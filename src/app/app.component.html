@@ -1,0 +1,18 @@
+<div class="app__wrapper">
+  <ng-container
+   *ngTemplateOutlet="(appService.bgImage$ | async) ? mainPage : preloadingPage">
+  </ng-container>
+</div>
+
+<ng-template #mainPage>
+  <div
+    class="app__main"
+    [style.backgroundImage]="'url('+(appService.bgImage$ | async).urlBgImg+')'"
+  >
+  <app-controls></app-controls>
+  </div>
+</ng-template>
+
+<ng-template #preloadingPage>
+  <div class="app__preloader"></div>
+</ng-template>

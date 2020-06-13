@@ -1,0 +1,24 @@
+.app {
+  &__wrapper {
+    // position: relative;
+    min-width: 320px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  &__main {
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: space-between;
+    min-height: 700px;
+    padding: 2%;
+    background-position: 50%;
+    background-size: cover;
+  }
+  &__preloader {
+    height: 100vh;
+    background-image: url("./../assets/img/preloader.gif");
+    background-repeat: no-repeat;
+    background-position: 50%;
+  }
+}
