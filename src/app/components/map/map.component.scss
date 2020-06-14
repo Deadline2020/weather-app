@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  // flex-flow: 1;
+  // flex-shrink: 1;
+  // flex-basis: 40%;
+  flex: 1 1 40%
+}
+
+.map{
+  // display: flex;
+  height: 700px;//! удалить после заполнения блока
+  width: 100%;
+}

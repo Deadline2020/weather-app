@@ -1,8 +1,122 @@
-:host{
-  background-color:red;
-  flex-basis:40%;
+:host {
+  flex-basis: 50%;
   margin-left: auto;
 }
-.controls__search{
 
+.controls-search {
+  display: flex;
+  &__input {
+    // flex: 1 1;
+    width: 75%;
+    height: 44px;
+    padding: 0 0 0 15px;
+    // font-family: "Arial", "Helvetica", sans-serif;
+    color: white;
+    background: #4c525566;
+    border-width: 1px 0 1px 1px;
+    border-style: solid;
+    border-color: white;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    &::placeholder {
+      color: white;
+      text-indent: 0;
+      transition: text-indent 0.3s ease;
+    }
+    &:focus::placeholder {
+      text-indent: 500px;
+    }
+    // &::-webkit-search-cancel-button {
+    //   display: none;
+    // }
+  }
+  &__btn-search {
+    width: 100px;
+    font-weight: bold;
+    background: grey;
+    border-width: 1px 1px 1px 0;
+    border-style: solid;
+    border-color: white;
+    border-radius: 0 5px 5px 0;
+    outline: none;
+    &:hover {
+      background: green;
+    }
+    &_load {
+      background: linear-gradient(-45deg, green 25%, transparent 25%, transparent 50%, green 50%, green 75%, transparent 75%, transparent);
+      background-size: 10px 10px;
+      animation: stripes 1s infinite linear;
+      @keyframes stripes {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 50px 0;
+        }
+      }
+    }
+  }
+}
+
+.btn-mic {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  line-height: 50px;
+  text-align: center;
+  background: #4c525566;
+  border-width: 1px 0 1px 0;
+  border-style: solid;
+  border-color: white;
+  outline: none;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  user-select: none;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: 50px;
+    height: 50px;
+    margin: -25px 0 0 -25px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(172, 255, 47, 0.5);
+    opacity: 0;
+    pointer-events: none;
+  }
+  &_click::before,
+  &_click::after {
+    animation-name: voice_scale, voice_opacity;
+    animation-duration: 1.2s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite;
+  }
+  &_click::after {
+    animation-delay: 0.6s;
+  }
+  &_click>&__img,
+  &:hover>&__img {
+    filter: invert(30%) sepia(99%) saturate(4077%) hue-rotate(105deg);
+  }
+  @keyframes voice_opacity {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    40%,
+    60% {
+      opacity: 1;
+    }
+  }
+  @keyframes voice_scale {
+    0% {
+      transform: scale3d(0.5, 0.5, 1);
+    }
+    100% {
+      transform: scale3d(1.4, 1.4, 1);
+    }
+  }
 }

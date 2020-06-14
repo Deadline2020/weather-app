@@ -1,4 +1,18 @@
-<div class="controls__search">
-
+<div class="controls-search">
+  <input
+    class="controls-search__input"
+    type="text"
+    placeholder={{controlsService.searchPlaceholder}}
+    >
+  <button class="btn-mic">
+    <img
+      class="btn-mic__img"
+      src="./../../../../../assets/img/microphone-icon.svg"
+      alt="microphone"
+    >
+  </button>
+  <button class="btn controls-search__btn-search">
+  {{controlsService.searchBtn}}
+  </button>
 </div>
 
