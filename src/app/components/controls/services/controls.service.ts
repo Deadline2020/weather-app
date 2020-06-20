@@ -1,26 +1,28 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
+import { takeUntil } from 'rxjs/operators';
+import { Subject, Observable } from 'rxjs';
 
 import { IAppState } from 'src/app/store/state/app.state';
-import { Subject, Observable } from 'rxjs';
-import { ILanguageData } from 'src/app/models/language-data';
 import { selectLanguage } from 'src/app/store/selectors/language.selector';
+import { DictService } from 'src/app/services/translate-data.service';
 
 @Injectable()
 export class ControlsService implements OnDestroy {
 
 	private destroySubject$: Subject<boolean> = new Subject();
-	public currentLang$: Observable<ILanguageData> = this._store.pipe(select(selectLanguage));
+	public currentLang$: Observable<string> = this._store.pipe(select(selectLanguage, takeUntil(this.destroySubject$)));
 
 	public searchBtn: string = null;
 	public searchPlaceholder: string = null;
 
 	constructor(
 		private _store: Store<IAppState>,
+		private _dict: DictService,
 	) {
-		this.currentLang$.subscribe((langData: ILanguageData) => {
-			this.searchBtn = langData.dict.searchBtn[langData.lang];
-			this.searchPlaceholder = langData.dict.searchPlaceholder[langData.lang];
+		this.currentLang$.subscribe((lang: string) => {
+			this.searchBtn = this._dict.searchBtn[lang];
+			this.searchPlaceholder = this._dict.searchPlaceholder[lang];
 		});
 	}
 

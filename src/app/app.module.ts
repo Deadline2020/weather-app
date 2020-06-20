@@ -7,21 +7,22 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BgImageService } from './services/bg-image.service';
+import { GetBgImageService } from './services/get-info-bg-image.service';
 import { AppService } from './services/app.service';
 import { environment } from 'src/environments/environment';
 import { appReducers } from './store/reducers/app.reducers';
-import { BgImageEffects } from './store/effects/bg-image.effects';
-// import { ControlsComponent } from './components/controls/controls.component';
-// import { SearchComponent } from './components/controls/components/search/search.component';
-// import { DailyForecastComponent } from './components/daily-forecast/daily-forecast.component';
-// import { WeekForecastComponent } from './components/week-forecast/week-forecast.component';
-// import { MapComponent } from './components/map/map.component';
 import { HelpersService } from './services/helpers.service';
 import { ControlsModule } from './components/controls/controls.module';
 import { MapModule } from './components/map/map.module';
 import { DailyForecastModule } from './components/daily-forecast/daily-forecast.module';
 import { WeekForecastModule } from './components/week-forecast/week-forecast.module';
+import { GetCoordsService } from './services/get-coords';
+import { GetInfoLocationService } from './services/get-info-location.service';
+import { GetAllInfoEffects } from './store/effects/get-all-info.effects';
+import { GetAllInfoService } from './services/get-all-info.service';
+import { GetInfoForecastService } from './services/get-info-forecast.service';
+import { DictService } from './services/translate-data.service';
+import { GetCurCoordsEffects } from './store/effects/get-current-coords.effects';
 
 @NgModule({
 	declarations: [
@@ -36,12 +37,17 @@ import { WeekForecastModule } from './components/week-forecast/week-forecast.mod
 		WeekForecastModule,
 		DailyForecastModule,
 		StoreModule.forRoot(appReducers),
-		EffectsModule.forRoot([BgImageEffects]),
+		EffectsModule.forRoot([ GetAllInfoEffects, GetCurCoordsEffects]),
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
 	],
 	providers: [
-		BgImageService,
+		GetAllInfoService,
+		GetBgImageService, // ! проверь все ли сервисы нужны
+		GetInfoLocationService,
+		GetInfoForecastService,
 		HelpersService,
+		GetCoordsService,
+		DictService,
 		AppService,
 	],
 	bootstrap: [AppComponent]

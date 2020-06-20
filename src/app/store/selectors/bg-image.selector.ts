@@ -1,12 +1,11 @@
 import { createSelector, MemoizedSelector } from '@ngrx/store';
 
-import { IBgImageState } from '../state/bg-image.state';
 import { IAppState } from '../state/app.state';
-import { IBgImage } from 'src/app/models/bg-image';
+import { IUrlBgImgState } from '../state/bg-image.state';
 
-const bgImageState: (state: IAppState) => IBgImageState = (state: IAppState) => state.bgImage;
+const bgImageState: (state: IAppState) => IUrlBgImgState = (state: IAppState) => state.urlBgImg;
 
-export const selectBgImage: MemoizedSelector<IAppState, IBgImage> = createSelector(
+export const selectBgImage: MemoizedSelector<IAppState, string> = createSelector(
   bgImageState,
-  (state: IBgImageState) => state.bgImageData
+  (state: IUrlBgImgState) => state.urlBgImg
 );

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DailyForecastService } from './services/daily-forecast.service';
 
 @Component({
 	selector: 'app-daily-forecast',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DailyForecastComponent implements OnInit {
 
-	constructor() { }
+	constructor(
+		public _dailyForecast: DailyForecastService,
+	) { }
 
 	public ngOnInit(): void { }
 

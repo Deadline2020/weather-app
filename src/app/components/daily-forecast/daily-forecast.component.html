@@ -1,1 +1,18 @@
-<div class="wrapper daily-forecast">daily-forecast works!</div>
+<div class="daily-forecast">
+  <div class="wrapper daily-forecast__name">
+    {{( _dailyForecast.locationInfo$ | async).city}}, {{(_dailyForecast.locationInfo$ | async).country}}
+  </div>
+  <div class="wrapper daily-forecast__date">
+    {{ _dailyForecast.dateInLocation$ | async }}
+  </div>
+  <div class="wrapper daily-forecast__info">
+    <app-main-info
+      [currentTemp]="(_dailyForecast.temperature$ | async).curTemperature"
+      [iconPath]="(_dailyForecast.forecastParams$ | async).curIcon"
+      [summary]="(_dailyForecast.forecastParams$ | async).curSummary"
+      [feelsLike]="(_dailyForecast.temperature$ | async).apparentTemperature"
+      [wind]="(_dailyForecast.forecastParams$ | async).curWind"
+      [humidity]="(_dailyForecast.forecastParams$ | async).curHumidity">
+    </app-main-info>
+  </div>
+</div>

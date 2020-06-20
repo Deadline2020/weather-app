@@ -1,10 +1,7 @@
-import { IBgImage } from '../../models/bg-image';
-
-export interface IBgImageState {
-  bgImageData: IBgImage;
-
+export interface IUrlBgImgState {
+	urlBgImg: string;
 }
 
-export const initialBgImageState: IBgImageState = {
-  bgImageData: null,
+export const initialUrlBgImgState: IUrlBgImgState = {
+	urlBgImg: 'null',
 };

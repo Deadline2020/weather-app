@@ -1,13 +1,13 @@
 <div class="app__wrapper">
   <ng-container
-   *ngTemplateOutlet="(appService.bgImage$ | async) ? mainPage : preloadingPage">
+   *ngTemplateOutlet="(appService.bgImage$ | async)!=='null' ? mainPage : preloadingPage">
   </ng-container>
 </div>
 
 <ng-template #mainPage>
   <div
     class="app__main"
-    [style.backgroundImage]="'url('+(appService.bgImage$ | async).urlBgImg+')'"
+    [style.backgroundImage]="'url('+(appService.bgImage$ | async)+')'"
   >
   <app-controls></app-controls>
   <app-daily-forecast></app-daily-forecast>

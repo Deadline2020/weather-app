@@ -1,0 +1,28 @@
+:host {
+  display: grid;
+  align-items: center;
+  grid-template-areas: "temp sign" "temp params";
+  grid-template-columns: 2fr 1fr;
+  justify-items: center;
+}
+
+.info{
+  &__temp{
+    font-weight: 400;
+    font-size: 8rem;
+    grid-area: temp;
+  }
+  &__icon{
+    // width: 80%;
+    grid-area: sign;
+  }
+  &__params{
+    // align-self: flex-start;
+    grid-area: params;
+    justify-self: left;
+  }
+  &__text{
+    padding: 15px 0 0 0;
+    font-size: 1rem;
+  }
+}

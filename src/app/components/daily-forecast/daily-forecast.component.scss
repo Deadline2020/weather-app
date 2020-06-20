@@ -3,10 +3,22 @@
   // flex-flow: 1;
   // flex-shrink: 1;
   // flex-basis: 40%;
-  flex: 1 1 40%
+  flex: 1 1 45%
 }
 
-.daily-forecast{
-  // display: flex;
+.daily-forecast {
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  // font-weight: 700;
+  &__name {
+    font-size: 2rem;
+  }
+  &__date {
+    font-size: 1.15rem;
+    text-transform: capitalize;
+  }
+  &__info {
+    flex: 1 1
+  }
 }

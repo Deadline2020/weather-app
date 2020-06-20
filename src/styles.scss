@@ -1,7 +1,11 @@
 html {
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 20px;
   // background-color: #33495f;
+  color: white;
+  font-family: "Arial", "Helvetica", sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 *,
@@ -43,13 +47,13 @@ html {
   }
 }
 
-.wrapper{
+.wrapper {
   // display: flex;
   // flex-wrap: wrap;
   // justify-content: space-between;
   // min-height: 84px;
   padding: 20px;
-  background-color: #00000080;
+  background-color: hsla(0, 0%, 0%, 0.7);
   border-radius: 5px;
   margin: 5px;
 }
