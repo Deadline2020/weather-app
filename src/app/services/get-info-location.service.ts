@@ -16,8 +16,8 @@ export class GetInfoLocationService {
 
 	public getInfoLocation(lat: number, long: number, lang: string): Observable<IInfoLocation> {
 		const queryUrl: string = `https://api.opencagedata.com/geocode/v1/json?q=${lat}%2C%20${long}&key=${this._KEY}&language=${lang}&pretty=1`;
-		return this._httpClient.get<IInfoLocationJson>(queryUrl).pipe<IInfoLocation>(
-			map((data: IInfoLocationJson): IInfoLocation => {
+		return this._httpClient.get(queryUrl).pipe(
+			map((data: IInfoLocationJson) => {
 				const SEC_IN_MIN: number = 60;
 				const MILLISEC_IN_SEC: number = 1000;
 				const country: string = data.results[0].components.country;

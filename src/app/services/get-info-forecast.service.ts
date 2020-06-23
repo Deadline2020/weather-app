@@ -14,8 +14,8 @@ export class GetInfoForecastService {
 	constructor(
 		private _httpClient: HttpClient,
 	) { }
-	public getForecastData(lat: number, long: number, lang: string): Observable<IForecastDay> {
 
+	public getForecastData(lat: number, long: number, lang: string): Observable<IForecastDay> {
 		const queryUrl: string = `${this._PROXY}https://api.darksky.net/forecast/${this._KEY}/${lat},${long}?extend=daily,flags&units=si&lang=${lang}`;
 		return this._httpClient.get(queryUrl).pipe(
 			map((data: IForecastJson) =>

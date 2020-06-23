@@ -13,14 +13,14 @@ export class GetBgImageService {
 
 	constructor(
 		private _httpClient: HttpClient,
-		private helpers: HelpersService,
+		private _helpers: HelpersService,
 	) { }
 	public getBGImgData([season, dayTime]: [string, string]): Observable<string> {
-		const queryUrl: string = `${this._BASE_URL}&tags=${season}%2C${dayTime}%2Cweather%2Cnature&tag_mode=all&per_page=100&extras=url_l&format=json&nojsoncallback=1`;
-		return this._httpClient.get<IBgImageJson>(queryUrl).pipe<string>(
+		const queryUrl: string = `${this._BASE_URL}&tags=${season}%2C${dayTime}%2Cweather&tag_mode=all&per_page=100&extras=url_l&format=json&nojsoncallback=1`;
+		return this._httpClient.get(queryUrl).pipe(
 			map((data: IBgImageJson): string => {
 				const arr: [{ url_l: string }] = data.photos.photo;
-				return arr[this.helpers.getRandomNum(arr.length)].url_l;
+				return arr[this._helpers.getRandomNum(arr.length)].url_l;
 			})
 		);
 	}

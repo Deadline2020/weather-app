@@ -3,22 +3,25 @@ import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
-import { ICoordsActions, ECoordsActions, getCoordsSuccess } from '../actions/coords.actions';
-import { GetCoordsService } from '../../services/get-coords';
+import { ICoordsActions, ECoordsActions, getCoordsSuccess, ICurrentCoordsActions } from '../actions/get-coords.actions';
+import { GetCoordsService } from '../../services/get-coords.service';
 import { ICoords } from 'src/app/models/coords';
+// import { IInfoRequest } from 'src/app/models/info-request';
 import { getAllInfo, IGetAllInfoActions } from '../actions/get-all-info.actions';
 
 @Injectable()
 export class GetCurCoordsEffects {
 
 	@Effect()
-	public getCoords$: Observable<ICoordsActions | IGetAllInfoActions> = this._actions$.pipe(
-		ofType<ICoordsActions>(ECoordsActions.GetCoords),
+	public getCurrentCoords$: Observable<ICoordsActions | IGetAllInfoActions> = this._actions$.pipe(
+		ofType<ICurrentCoordsActions>(ECoordsActions.GetCurrentCoords),
 		switchMap(() => this._getCoordsService.getCurLocation()),
-		switchMap((data: ICoords) => [
-			getCoordsSuccess(data),
-			getAllInfo(data),
-		]),
+		switchMap((data: ICoords) => {
+			return [
+				getCoordsSuccess(data),
+				getAllInfo({ latitude: data.latitude, longitude: data.longitude, withBgImg: true }),
+			];
+		}),
 	);
 
 	constructor(

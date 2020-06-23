@@ -15,7 +15,7 @@
     background: #4c525566;
     border-width: 1px 0 1px 1px;
     border-style: solid;
-    border-color: white;
+    border-color: gray;
     border-radius: 5px 0 0 5px;
     outline: none;
     &::placeholder {
@@ -36,7 +36,7 @@
     background: grey;
     border-width: 1px 1px 1px 0;
     border-style: solid;
-    border-color: white;
+    border-color: gray;
     border-radius: 0 5px 5px 0;
     outline: none;
     &:hover {
@@ -67,7 +67,7 @@
   background: #4c525566;
   border-width: 1px 0 1px 0;
   border-style: solid;
-  border-color: white;
+  border-color: gray;
   outline: none;
   cursor: pointer;
   transition: 0.2s ease-in-out;

@@ -1,3 +1,20 @@
 <div class="wrapper controls">
-<app-search></app-search>
+	<app-lang-drop-list
+		[currentLang]="controlsService._currentLang"
+		(onChangeLang)="controlsService.changeLang($event)"
+	>
+	</app-lang-drop-list>
+	<app-temp-unit-checkbox
+		[temperatureUnit]="controlsService.tempUnit$ | async"
+		(onClickTempUnit)="controlsService.changeTempUnit($event)"
+	>
+	</app-temp-unit-checkbox>
+  <app-search
+		[inputSearchValue]="controlsService.inputSearchValue"
+		[searchPlaceholder]="controlsService.searchPlaceholder"
+		[searchBtn]="controlsService.searchBtn"
+		[isLoaded]="controlsService.isLoaded$ | async"
+		(onClickSearch)="controlsService.searchCity($event)"
+	>
+	</app-search>
 </div>

@@ -16,17 +16,21 @@ import { ControlsModule } from './components/controls/controls.module';
 import { MapModule } from './components/map/map.module';
 import { DailyForecastModule } from './components/daily-forecast/daily-forecast.module';
 import { WeekForecastModule } from './components/week-forecast/week-forecast.module';
-import { GetCoordsService } from './services/get-coords';
+import { GetCoordsService } from './services/get-coords.service';
 import { GetInfoLocationService } from './services/get-info-location.service';
 import { GetAllInfoEffects } from './store/effects/get-all-info.effects';
 import { GetAllInfoService } from './services/get-all-info.service';
 import { GetInfoForecastService } from './services/get-info-forecast.service';
 import { DictService } from './services/translate-data.service';
 import { GetCurCoordsEffects } from './store/effects/get-current-coords.effects';
+import { GetCityCoordsEffects } from './store/effects/get-city-coords.effects';
+import { ErrorMessageComponent } from './components/error-message/error-message.component';
+import { ErrorMsgService } from './services/error-msg.service';
 
 @NgModule({
 	declarations: [
 		AppComponent,
+		ErrorMessageComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -37,7 +41,7 @@ import { GetCurCoordsEffects } from './store/effects/get-current-coords.effects'
 		WeekForecastModule,
 		DailyForecastModule,
 		StoreModule.forRoot(appReducers),
-		EffectsModule.forRoot([ GetAllInfoEffects, GetCurCoordsEffects]),
+		EffectsModule.forRoot([ GetAllInfoEffects, GetCurCoordsEffects, GetCityCoordsEffects]),
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
 	],
 	providers: [
@@ -46,6 +50,7 @@ import { GetCurCoordsEffects } from './store/effects/get-current-coords.effects'
 		GetInfoLocationService,
 		GetInfoForecastService,
 		HelpersService,
+		ErrorMsgService,
 		GetCoordsService,
 		DictService,
 		AppService,

@@ -2,27 +2,28 @@
   display: grid;
   align-items: center;
   grid-template-areas: "temp sign" "temp params";
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1.75fr 1.25fr;
   justify-items: center;
 }
 
-.info{
-  &__temp{
+.info {
+  &__temp {
     font-weight: 400;
-    font-size: 8rem;
+    font-size: 7rem;
     grid-area: temp;
   }
-  &__icon{
+  &__icon {
     // width: 80%;
     grid-area: sign;
   }
-  &__params{
+  &__params {
     // align-self: flex-start;
     grid-area: params;
-    justify-self: left;
+    // justify-self: left;
   }
-  &__text{
+  &__text {
     padding: 15px 0 0 0;
-    font-size: 1rem;
+    font-size: 0.8rem;
+    // text-transform: capitalize;
   }
 }

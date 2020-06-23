@@ -14,6 +14,10 @@
   <app-week-forecast></app-week-forecast>
   <app-map></app-map>
   </div>
+  <app-error-message
+    [errorMessageText]="errorMsg.errorMessageText"
+  >
+    </app-error-message> 
 </ng-template>
 
 <ng-template #preloadingPage>

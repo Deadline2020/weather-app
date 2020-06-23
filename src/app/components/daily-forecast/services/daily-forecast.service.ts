@@ -16,10 +16,10 @@ import { selectTempUnit } from 'src/app/store/selectors/temperature-unit';
 export class DailyForecastService {
 
 	private MILLISEC_IN_SEC: number = 1000;
-	public currentLang$: Observable<string> = this._store.pipe(select(selectLanguage));
-	public currentTempUnit$: Observable<string> = this._store.pipe(select(selectTempUnit));
+	private currentLang$: Observable<string> = this._store.pipe(select(selectLanguage));
+	private currentTempUnit$: Observable<string> = this._store.pipe(select(selectTempUnit));
 	public locationInfo$: Observable<IInfoLocation> = this._store.pipe(select(selectInfoLocation));
-	public forecastInfo$: Observable<IForecastDay> = this._store.pipe(select(selectForecastDay));
+	private forecastInfo$: Observable<IForecastDay> = this._store.pipe(select(selectForecastDay));
 
 	public dateInLocation$: Observable<string> = combineLatest([
 		timer(0, this.MILLISEC_IN_SEC),
@@ -103,7 +103,7 @@ export class DailyForecastService {
 
 	public getHumidityAsString = (value: number, lang: string): string => {
 		const PERCENT: number = 100;
-		return `${this._dict.humidity[lang]} ${value * PERCENT}%`;
+		return `${this._dict.humidity[lang]} ${Math.round(value * PERCENT)}%`;
 	};
 
 }

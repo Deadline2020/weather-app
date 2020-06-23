@@ -1,4 +1,4 @@
-import { ICoordsActions, ECoordsActions } from '../actions/coords.actions';
+import { ICoordsActions, ECoordsActions } from '../actions/get-coords.actions';
 import { ICoordsState, initialCoordsState } from '../state/coords.state';
 
 export const coordsReducer: (state: ICoordsState, action: ICoordsActions) => ICoordsState = (

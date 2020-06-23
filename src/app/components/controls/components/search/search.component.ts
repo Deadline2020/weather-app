@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { ControlsService } from '../../services/controls.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+	selector: 'app-search',
+	templateUrl: './search.component.html',
+	styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
 
-  constructor(public controlsService: ControlsService) { }
+	@Input() public inputSearchValue: string;
+	@Input() public searchPlaceholder: string;
+	@Input() public searchBtn: string;
+	@Input() public isLoaded: boolean;
+	@Output() public onClickSearch: EventEmitter<string> = new EventEmitter();
 
-  public ngOnInit(): void { }
+	constructor() { }
+
+	public ngOnInit(): void { }
+
+	public onClick(): void {
+		this.onClickSearch.emit(this.inputSearchValue);
+	}
 
 }

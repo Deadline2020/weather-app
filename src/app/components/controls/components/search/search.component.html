@@ -2,17 +2,23 @@
   <input
     class="controls-search__input"
     type="text"
-    placeholder={{controlsService.searchPlaceholder}}
-    >
+    [(ngModel)]="inputSearchValue"
+    (keyup.enter)="onClick()"
+    placeholder={{searchPlaceholder}}
+  >
   <button class="btn-mic">
     <img
       class="btn-mic__img"
       src="./../../../../../assets/img/microphone-icon.svg"
       alt="microphone"
-    >
+  >
   </button>
-  <button class="btn controls-search__btn-search">
-  {{controlsService.searchBtn}}
+  <button
+    class="btn controls-search__btn-search"
+    [class.controls-search__btn-search_load]="!isLoaded"
+    (click)="onClick()"
+  >
+    {{searchBtn}}
   </button>
 </div>
 

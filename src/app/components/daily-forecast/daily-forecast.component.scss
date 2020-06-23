@@ -19,6 +19,8 @@
     text-transform: capitalize;
   }
   &__info {
-    flex: 1 1
+    min-height: 350px;
+    flex: 1 1;
+    // font-size: 0.5rem
   }
 }

@@ -3,5 +3,5 @@ export interface ILanguageState {
 }
 
 export const initialLanguageState: ILanguageState = {
-	language: 'en',
+	language: 'ru',
 };

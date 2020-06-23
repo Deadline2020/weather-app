@@ -4,7 +4,7 @@ import { Store, select } from '@ngrx/store';
 
 import { IAppState } from '../store/state/app.state';
 import { selectBgImage } from '../store/selectors/bg-image.selector';
-import { getCoords } from '../store/actions/coords.actions';
+import { getCurrentCoords } from '../store/actions/get-coords.actions';
 
 @Injectable()
 export class AppService {
@@ -22,6 +22,6 @@ export class AppService {
 		if (dataFromLS !== null) {
 			// ! DISPATCH температуру и язык
 		}
-		this._store.dispatch(getCoords());
+		this._store.dispatch(getCurrentCoords());
 	}
 }

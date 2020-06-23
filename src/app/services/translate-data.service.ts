@@ -65,9 +65,9 @@ export class DictService {
 
 	public get errorNameCity(): ITranslateData {
 		return {
-			en: 'The request failed. Please repeat.',
-			ru: 'Ошибка запроса. Повторите пожалуйста.',
-			be: 'Памылка запыту. Паўтарыце калі ласка.',
+			en: 'The request failed! Please repeat.',
+			ru: 'Ошибка запроса! Повторите пожалуйста.',
+			be: 'Памылка запыту! Паўтарыце калі ласка.',
 		};
 	}
 }

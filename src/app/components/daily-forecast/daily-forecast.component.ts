@@ -9,7 +9,7 @@ import { DailyForecastService } from './services/daily-forecast.service';
 export class DailyForecastComponent implements OnInit {
 
 	constructor(
-		public _dailyForecast: DailyForecastService,
+		public dailyForecast: DailyForecastService,
 	) { }
 
 	public ngOnInit(): void { }

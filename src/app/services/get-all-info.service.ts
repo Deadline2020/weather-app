@@ -12,12 +12,16 @@ import { IForecastDay } from '../models/forecast-day';
 import { IAppState } from '../store/state/app.state';
 import { selectLanguage } from '../store/selectors/language.selector';
 import { ICoords } from '../models/coords';
+import { selectBgImage } from '../store/selectors/bg-image.selector';
+import { IInfoRequest } from '../models/info-request';
 
 @Injectable()
 export class GetAllInfoService implements OnDestroy {
 	private destroySubject$: Subject<boolean> = new Subject();
 	private currentLang$: Observable<string> = this._store.pipe(select(selectLanguage), takeUntil(this.destroySubject$));
 	private currentLang: string;
+	private currentBgImg$: Observable<string> = this._store.pipe(select(selectBgImage), takeUntil(this.destroySubject$));
+	private currentBgImg: string;
 
 	constructor(
 		private _store: Store<IAppState>,
@@ -29,22 +33,35 @@ export class GetAllInfoService implements OnDestroy {
 		this.currentLang$.subscribe((langData: string) => {
 			this.currentLang = langData;
 		});
+		this.currentBgImg$.subscribe((bgImg: string) => {
+			this.currentBgImg = bgImg;
+		});
 	}
 
-	public getAllInfo({ latitude, longitude }: ICoords): Observable<[Array<IInfoLocation | string>, IForecastDay]> {
-		return forkJoin([
-			this._getInfoLocation.getInfoLocation(latitude, longitude, this.currentLang).pipe(
+	public getAllInfo({ latitude, longitude, withBgImg, language = this.currentLang }: IInfoRequest):
+		Observable<[Array<IInfoLocation | string>, IForecastDay, string]> {
+		return forkJoin([// ! пробовал CombineLatest вроде без разницы
+			this._getInfoLocation.getInfoLocation(latitude, longitude, language).pipe(
 				mergeMap((info: IInfoLocation) => { // ! а если switchMap?
 					const curDate: Date = new Date(Date.now() + info.timeShift);
 					const timeOfDay: string = this._helpers.getTimeOfDay(curDate);
 					const season: string = this._helpers.getSeason(curDate);
-					return this._getInfoBgImageService.getBGImgData([season, timeOfDay]).pipe(
-						map((imgUrl: string) => [info, imgUrl])
-					);
+					if (withBgImg) {
+						return this._getInfoBgImageService.getBGImgData([season, timeOfDay]).pipe(
+							map((imgUrl: string) => {
+								if (imgUrl === undefined) {
+									imgUrl = 'assets/img/default_bg.jpg';
+								}
+								return [info, imgUrl];
+							})
+						);
+					}
+					return [[info, this.currentBgImg]];
 				})),
-			this._getInfoForecastService.getForecastData(latitude, longitude, this.currentLang).pipe(
+			this._getInfoForecastService.getForecastData(latitude, longitude, language).pipe(
 				map((forecastData: IForecastDay) => forecastData)
-			)
+			),
+			[language],
 		]);
 
 	}
