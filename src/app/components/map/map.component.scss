@@ -2,12 +2,18 @@
   display: flex;
   // flex-flow: 1;
   // flex-shrink: 1;
-  // flex-basis: 40%;
+  // flex-basis: 35%;
   flex: 1 1 35%
 }
 
 .map{
-  // display: flex;
-  // height: 700px;//! удалить после заполнения блока
+  display: flex;
+  min-height: 640px;//! удалить после заполнения блока
+  // height: 100%;
+  width: 100%;
+}
+
+mgl-map {
+  height: 100%;
   width: 100%;
 }

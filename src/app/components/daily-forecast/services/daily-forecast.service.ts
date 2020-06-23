@@ -18,8 +18,8 @@ export class DailyForecastService {
 	private MILLISEC_IN_SEC: number = 1000;
 	private currentLang$: Observable<string> = this._store.pipe(select(selectLanguage));
 	private currentTempUnit$: Observable<string> = this._store.pipe(select(selectTempUnit));
-	public locationInfo$: Observable<IInfoLocation> = this._store.pipe(select(selectInfoLocation));
 	private forecastInfo$: Observable<IForecastDay> = this._store.pipe(select(selectForecastDay));
+	public locationInfo$: Observable<IInfoLocation> = this._store.pipe(select(selectInfoLocation));
 
 	public dateInLocation$: Observable<string> = combineLatest([
 		timer(0, this.MILLISEC_IN_SEC),

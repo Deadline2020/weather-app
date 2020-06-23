@@ -5,6 +5,7 @@ import { ITemperatureUnitState, initialTemperatureUnitState } from './temperatur
 import { ICoordsState, initialCoordsState } from './coords.state';
 import { IInfoLocationState, initialInfoLocationState } from './info-location.state';
 import { IForecastDayState, initialForecastDayState } from './forecast-day.state';
+import { IIsInitState, initialIsInitState } from './is-init.state';
 
 export interface IAppState {
   isLoaded: IIsLoadedState;
@@ -14,6 +15,7 @@ export interface IAppState {
   coords: ICoordsState;
   infoLocation: IInfoLocationState;
   forecastDay: IForecastDayState;
+  isInit: IIsInitState;
 }
 
 export const initialAppState: IAppState = {
@@ -24,6 +26,7 @@ export const initialAppState: IAppState = {
   coords: initialCoordsState,
   infoLocation: initialInfoLocationState,
   forecastDay: initialForecastDayState,
+  isInit: initialIsInitState,
 };
 
 export const getInitialState: () => IAppState = (): IAppState => {

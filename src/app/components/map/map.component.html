@@ -1,1 +1,9 @@
-<div class="wrapper map">map works!</div>
+<div class="wrapper map">
+    <mgl-map
+    [style]="'mapbox://styles/mapbox/outdoors-v11'"
+    [zoom]="[10]"
+    [center]="[(mapServices.currentCoords$ | async).longitude, (mapServices.currentCoords$ | async).latitude]"
+    [movingMethod]="'flyTo'"
+    >
+    </mgl-map>
+</div>

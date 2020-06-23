@@ -12,13 +12,14 @@ import { getDayForecastSuccess, IForecastDayActions } from '../actions/forecast.
 import { GetAllInfoService } from '../../services/get-all-info.service';
 import { loadDataFinish, ILoadDataActions } from '../actions/isLoad.actions';
 import { setCurrentLanguage, ILanguageActions } from '../actions/language.actions';
+import { setIsInitTrue, IIsInitedActions } from '../actions/is-init.actions';
 
 @Injectable()
 export class GetAllInfoEffects {
 
 	@Effect()
 	public getAllInfo$: Observable<IInfoLocationActions | IBgImageActions |
-		IForecastDayActions | ILanguageActions | ILoadDataActions> = this._actions$.pipe(
+		IForecastDayActions | ILanguageActions | ILoadDataActions | IIsInitedActions> = this._actions$.pipe(
 			ofType<IGetAllInfoActions>(EGetAllInfoActions.GetAllInfo),
 			switchMap((data: IGetAllInfoActions) => this._getAllInfoService.getAllInfo(data.payload)),
 			switchMap((data: [[IInfoLocation, string], IForecastDay, string]) => [
@@ -27,6 +28,7 @@ export class GetAllInfoEffects {
 				getDayForecastSuccess(data[1]),
 				setCurrentLanguage(data[2]),
 				loadDataFinish(),
+				setIsInitTrue(),
 			]),
 		);
 

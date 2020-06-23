@@ -1,6 +1,6 @@
 <div class="app__wrapper">
   <ng-container
-   *ngTemplateOutlet="(appService.bgImage$ | async)!=='null' ? mainPage : preloadingPage">
+   *ngTemplateOutlet="(appService.appInit$ | async) ? mainPage : preloadingPage">
   </ng-container>
 </div>
 

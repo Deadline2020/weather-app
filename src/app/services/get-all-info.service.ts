@@ -40,7 +40,7 @@ export class GetAllInfoService implements OnDestroy {
 
 	public getAllInfo({ latitude, longitude, withBgImg, language = this.currentLang }: IInfoRequest):
 		Observable<[Array<IInfoLocation | string>, IForecastDay, string]> {
-		return forkJoin([// ! пробовал CombineLatest вроде без разницы
+		return forkJoin([// ! пробовал CombineLatest вроде тоже самое
 			this._getInfoLocation.getInfoLocation(latitude, longitude, language).pipe(
 				mergeMap((info: IInfoLocation) => { // ! а если switchMap?
 					const curDate: Date = new Date(Date.now() + info.timeShift);
