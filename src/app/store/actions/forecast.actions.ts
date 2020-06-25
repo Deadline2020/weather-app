@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { IForecastDay } from 'src/app/models/forecast-day';
+import { IForecast } from 'src/app/models/forecast';
 
 export enum EForecastActions {
 	GetDayForecastSuccess = '[Forecast] Get Day Forecast Success',
@@ -7,12 +7,12 @@ export enum EForecastActions {
 	GetHourlyForecastSuccess = '[Forecast] Get Hourly Forecast Success',
 }
 
-export interface IForecastDayActions extends Action {
+export interface IForecastActions extends Action {
 	type: string;
-	payload: IForecastDay;
+	payload: IForecast;
 }
 
-export function getDayForecastSuccess(payload: IForecastDay): IForecastDayActions {
+export function getDayForecastSuccess(payload: IForecast): IForecastActions {
 	return {
 		type: EForecastActions.GetDayForecastSuccess,
 		payload,

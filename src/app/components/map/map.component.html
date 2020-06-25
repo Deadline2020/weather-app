@@ -3,7 +3,7 @@
     [style]="'mapbox://styles/mapbox/outdoors-v11'"
     [zoom]="[10]"
     [center]="[(mapServices.currentCoords$ | async).longitude, (mapServices.currentCoords$ | async).latitude]"
-    [movingMethod]="'flyTo'"
+    [pitch]="0"
     >
     </mgl-map>
 </div>

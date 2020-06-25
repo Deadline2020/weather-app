@@ -4,7 +4,7 @@ import { ILanguageState, initialLanguageState } from './language.state';
 import { ITemperatureUnitState, initialTemperatureUnitState } from './temperature-unit.state';
 import { ICoordsState, initialCoordsState } from './coords.state';
 import { IInfoLocationState, initialInfoLocationState } from './info-location.state';
-import { IForecastDayState, initialForecastDayState } from './forecast-day.state';
+import { IForecastState, initialForecastState } from './forecast.state';
 import { IIsInitState, initialIsInitState } from './is-init.state';
 
 export interface IAppState {
@@ -14,7 +14,7 @@ export interface IAppState {
   temperatureUnit: ITemperatureUnitState;
   coords: ICoordsState;
   infoLocation: IInfoLocationState;
-  forecastDay: IForecastDayState;
+  forecast: IForecastState;
   isInit: IIsInitState;
 }
 
@@ -25,7 +25,7 @@ export const initialAppState: IAppState = {
   temperatureUnit: initialTemperatureUnitState,
   coords: initialCoordsState,
   infoLocation: initialInfoLocationState,
-  forecastDay: initialForecastDayState,
+  forecast: initialForecastState,
   isInit: initialIsInitState,
 };
 

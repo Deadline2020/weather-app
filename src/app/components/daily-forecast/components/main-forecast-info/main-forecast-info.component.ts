@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-main-info',
-  templateUrl: './main-info.component.html',
-  styleUrls: ['./main-info.component.scss']
+  selector: 'app-main-forecast-info',
+  templateUrl: './main-forecast-info.component.html',
+  styleUrls: ['./main-forecast-info.component.scss']
 })
 export class MainInfoComponent implements OnInit {
   @Input() public currentTemp: string;

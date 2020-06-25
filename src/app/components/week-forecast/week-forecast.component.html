@@ -1,1 +1,52 @@
-<div class="wrapper week-forecast">week-forecast works!</div>
+<div class="wrapper">
+    <swiper
+		class="swiper-container"
+		[config]="config">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide forecast-slide">
+				<app-short-forecast
+				[weekForecast]="(weekForecast.arrForecast$ | async)[0]"
+				>
+				</app-short-forecast>	
+			</div>
+			<div class="swiper-slide forecast-slide">
+				<app-short-forecast
+				[weekForecast]="(weekForecast.arrForecast$ | async)[1]"
+				>
+				</app-short-forecast>	
+			</div>
+			<div class="swiper-slide forecast-slide">
+				<app-short-forecast
+				[weekForecast]="(weekForecast.arrForecast$ | async)[2]"
+				>
+				</app-short-forecast>	
+			</div>
+			<div class="swiper-slide forecast-slide">
+				<app-short-forecast
+				[weekForecast]="(weekForecast.arrForecast$ | async)[3]"
+				>
+				</app-short-forecast>	
+			</div>
+			<div class="swiper-slide forecast-slide">
+				<app-short-forecast
+				[weekForecast]="(weekForecast.arrForecast$ | async)[4]"
+				>
+				</app-short-forecast>	
+			</div>
+			<div class="swiper-slide forecast-slide">
+				<app-short-forecast
+				[weekForecast]="(weekForecast.arrForecast$ | async)[5]"
+				>
+				</app-short-forecast>	
+			</div>
+			<div class="swiper-slide forecast-slide">
+				<app-short-forecast
+				[weekForecast]="(weekForecast.arrForecast$ | async)[6]"
+				>
+				</app-short-forecast>	
+			</div>
+		</div>
+		<div class="swiper-button-next"></div>
+		<div class="swiper-button-prev"></div>
+	</swiper>
+</div>

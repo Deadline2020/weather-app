@@ -7,7 +7,14 @@ export interface IForecastJson {
 		humidity: number;
 		windSpeed: number;
 	};
-	hourly: {
-		summary: string;
+	daily: {
+		data: [
+			{
+				summary: string;
+				icon: string;
+				temperatureHigh: number;
+				temperatureLow: number;
+			}
+		];
 	};
 }

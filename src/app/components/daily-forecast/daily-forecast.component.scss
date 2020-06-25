@@ -1,26 +1,25 @@
 :host {
   display: flex;
-  // flex-flow: 1;
-  // flex-shrink: 1;
-  // flex-basis: 40%;
-  flex: 1 1 45%
+  flex: 1 1 45%;
 }
 
 .daily-forecast {
   display: flex;
   flex-direction: column;
   width: 100%;
-  // font-weight: 700;
+  user-select: none;
   &__name {
-    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    min-height: 125px;
+    font-size: 1.8rem;
   }
   &__date {
     font-size: 1.15rem;
     text-transform: capitalize;
   }
   &__info {
-    min-height: 350px;
     flex: 1 1;
-    // font-size: 0.5rem
+    min-height: 350px;
   }
 }

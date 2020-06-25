@@ -8,7 +8,7 @@ import { GetInfoLocationService } from './get-info-location.service';
 import { GetBgImageService } from './get-info-bg-image.service';
 import { HelpersService } from './helpers.service';
 import { GetInfoForecastService } from './get-info-forecast.service';
-import { IForecastDay } from '../models/forecast-day';
+import { IForecast } from '../models/forecast';
 import { IAppState } from '../store/state/app.state';
 import { selectLanguage } from '../store/selectors/language.selector';
 import { ICoords } from '../models/coords';
@@ -39,7 +39,7 @@ export class GetAllInfoService implements OnDestroy {
 	}
 
 	public getAllInfo({ latitude, longitude, withBgImg, language = this.currentLang }: IInfoRequest):
-		Observable<[Array<IInfoLocation | string>, IForecastDay, string]> {
+		Observable<[Array<IInfoLocation | string>, IForecast, string]> {
 		return forkJoin([// ! пробовал CombineLatest вроде тоже самое
 			this._getInfoLocation.getInfoLocation(latitude, longitude, language).pipe(
 				mergeMap((info: IInfoLocation) => { // ! а если switchMap?
@@ -59,7 +59,7 @@ export class GetAllInfoService implements OnDestroy {
 					return [[info, this.currentBgImg]];
 				})),
 			this._getInfoForecastService.getForecastData(latitude, longitude, language).pipe(
-				map((forecastData: IForecastDay) => forecastData)
+				map((forecastData: IForecast) => forecastData)
 			),
 			[language],
 		]);

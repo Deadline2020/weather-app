@@ -7,7 +7,7 @@ import { loadDataReducer } from './load-data.reducers';
 import { temperatureUnitReducer } from './temperature-unit.reducers';
 import { coordsReducer } from './coords.reducers';
 import { infoLocationReducer } from './info-location.reducers';
-import { forecastDayReducer } from './forecast-day.reducers';
+import { forecastReducer } from './forecast.reducers';
 import { isInitReducer } from './is-init.reducers';
 
 export const appReducers: ActionReducerMap<IAppState> = {
@@ -17,6 +17,6 @@ export const appReducers: ActionReducerMap<IAppState> = {
   temperatureUnit: temperatureUnitReducer,
   coords: coordsReducer,
   infoLocation: infoLocationReducer,
-  forecastDay: forecastDayReducer,
+  forecast: forecastReducer,
   isInit: isInitReducer,
 };

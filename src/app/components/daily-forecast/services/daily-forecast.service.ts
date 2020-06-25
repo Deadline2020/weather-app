@@ -6,11 +6,12 @@ import { map } from 'rxjs/operators';
 import { DictService } from 'src/app/services/translate-data.service';
 import { IAppState } from 'src/app/store/state/app.state';
 import { IInfoLocation } from 'src/app/models/info-location';
-import { IForecastDay } from 'src/app/models/forecast-day';
+import { IForecast } from 'src/app/models/forecast';
 import { selectLanguage } from 'src/app/store/selectors/language.selector';
 import { selectInfoLocation } from 'src/app/store/selectors/info-location.selector';
-import { selectForecastDay } from 'src/app/store/selectors/forecast-day.selector';
+import { selectForecast } from 'src/app/store/selectors/forecast.selector';
 import { selectTempUnit } from 'src/app/store/selectors/temperature-unit';
+import { HelpersService } from 'src/app/services/helpers.service';
 
 @Injectable()
 export class DailyForecastService {
@@ -18,7 +19,7 @@ export class DailyForecastService {
 	private MILLISEC_IN_SEC: number = 1000;
 	private currentLang$: Observable<string> = this._store.pipe(select(selectLanguage));
 	private currentTempUnit$: Observable<string> = this._store.pipe(select(selectTempUnit));
-	private forecastInfo$: Observable<IForecastDay> = this._store.pipe(select(selectForecastDay));
+	private forecastInfo$: Observable<IForecast> = this._store.pipe(select(selectForecast));
 	public locationInfo$: Observable<IInfoLocation> = this._store.pipe(select(selectInfoLocation));
 
 	public dateInLocation$: Observable<string> = combineLatest([
@@ -34,9 +35,9 @@ export class DailyForecastService {
 		this.forecastInfo$,
 		this.currentLang$,
 	]).pipe(
-		map((data: [string, IForecastDay, string]) => {
-			const curTemperature: string = this.getTempAsString(data[0], data[1].curTemperature);
-			const apparentTemperature: string = this.getApparentTempAsString(data[0], data[1].curTemperature, data[2]);
+		map((data: [string, IForecast, string]) => { // ! может вынести в отдельную функцию?
+			const curTemperature: string = this._helperService.getTempAsString(data[0], data[1].curTemperature);
+			const apparentTemperature: string = this._helperService.getApparentTempAsString(data[0], data[1].curTemperature, data[2]);
 			return { curTemperature, apparentTemperature };
 		}));
 
@@ -44,17 +45,18 @@ export class DailyForecastService {
 		this.forecastInfo$,
 		this.currentLang$,
 	]).pipe(
-		map((data: [IForecastDay, string]) => {
-			const curIcon: string = this.getIconPath(data[0].curIcon);
+		map((data: [IForecast, string]) => {// ! может вынести в отдельную функцию?
+			const curIcon: string = `assets/img/${data[0].curIcon}.svg`;
 			const curSummary: string = data[0].curSummary;
-			const curWind: string = this.getWindSpeedAsString(data[0].curWindSpeed, data[1]);
-			const curHumidity: string = this.getHumidityAsString(data[0].curHumidity, data[1]);
+			const curWind: string = this._helperService.getWindSpeedAsString(data[0].curWindSpeed, data[1]);
+			const curHumidity: string = this._helperService.getHumidityAsString(data[0].curHumidity, data[1]);
 			return { curIcon, curSummary, curWind, curHumidity };
 		}));
 
 	constructor(
 		private _store: Store<IAppState>,
 		private _dict: DictService,
+		private _helperService: HelpersService,
 	) { }
 
 	private getFormattedDateInLocation = (timeShift: number, lang: string): string => {
@@ -73,37 +75,6 @@ export class DailyForecastService {
 		const timeToString: string = ` ${(hour < TWO_DIGIT_NUMBER) ? `0${hour}` : `${hour}`}:${(min < TWO_DIGIT_NUMBER) ? `0${min}` : `${min}`}:${(sec < TWO_DIGIT_NUMBER) ? `0${sec}` : `${sec}`}`;
 
 		return dateToString + timeToString;
-	}
-
-	private setTempToFahrenheit = (value: number): number => {
-		const COEFFICIENT1: number = 1.8;
-		const COEFFICIENT2: number = 32;
-		return Math.round((value * COEFFICIENT1) + COEFFICIENT2);
-	};
-
-	public getTempAsString = (unit: string, temp: number): string => {
-		if (unit === 'f') {
-			temp = this.setTempToFahrenheit(temp);
-		}
-		return `${(temp > 0) ? '+' : ''}${Math.round(temp)}°`;
-	};
-
-	public getApparentTempAsString = (unit: string, temp: number, lang: string): string => {
-		const temperature: string = this.getTempAsString(unit, temp);
-		return `${this._dict.apparentTemperature[lang]} ${temperature}`;
-	};
-
-	public getIconPath = (forecast: string): string => {
-		return `assets/img/${forecast}.svg`;
-	};
-
-	public getWindSpeedAsString = (speed: number, lang: string): string => {
-		return `${this._dict.windSpeed[lang][0]} ${Math.round(speed)} ${this._dict.windSpeed[lang][1]}`;
-	};
-
-	public getHumidityAsString = (value: number, lang: string): string => {
-		const PERCENT: number = 100;
-		return `${this._dict.humidity[lang]} ${Math.round(value * PERCENT)}%`;
 	};
 
 }

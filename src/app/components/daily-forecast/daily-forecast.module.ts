@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DailyForecastComponent } from './daily-forecast.component';
 import { DailyForecastService } from './services/daily-forecast.service';
-import { MainInfoComponent } from './components/main-info/main-info/main-info.component';
+import { MainInfoComponent } from './components/main-forecast-info/main-forecast-info.component';
 
 @NgModule({
 	declarations: [
