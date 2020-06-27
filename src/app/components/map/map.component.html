@@ -4,6 +4,11 @@
     [zoom]="[10]"
     [center]="[(mapServices.currentCoords$ | async).longitude, (mapServices.currentCoords$ | async).latitude]"
     [pitch]="0"
+    (click)="mapServices.getInfoAboutLocation($event)"
     >
+        <mgl-marker
+        [lngLat]="[(mapServices.currentCoords$ | async).longitude, (mapServices.currentCoords$ | async).latitude]"
+        >   
+        </mgl-marker>
     </mgl-map>
 </div>
