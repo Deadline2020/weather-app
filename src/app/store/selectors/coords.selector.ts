@@ -7,6 +7,6 @@ import { ICoords } from 'src/app/models/coords';
 const coordsState: (state: IAppState) => ICoordsState = (state: IAppState) => state.coords;
 
 export const selectCoords: MemoizedSelector<IAppState, ICoords> = createSelector(
-  coordsState,
-  (state: ICoordsState) => state.coords
+	coordsState,
+	(state: ICoordsState) => state.coords
 );

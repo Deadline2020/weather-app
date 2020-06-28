@@ -9,7 +9,7 @@ import { IInfoLocation } from 'src/app/models/info-location';
 import { IForecastWeek } from 'src/app/models/forecast-week';
 import { selectLanguage } from 'src/app/store/selectors/language.selector';
 import { selectInfoLocation } from 'src/app/store/selectors/info-location.selector';
-import { selectTempUnit } from 'src/app/store/selectors/temperature-unit';
+import { selectTempUnit } from 'src/app/store/selectors/temperature-unit.selector';
 import { IForecastWeekJson } from 'src/app/models/forecast-week-json';
 import { selectForecastShort } from 'src/app/store/selectors/forecast-short.selector';
 import { HelpersService } from 'src/app/services/helpers.service';

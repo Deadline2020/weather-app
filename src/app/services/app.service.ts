@@ -1,14 +1,14 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Store, select } from '@ngrx/store';
+import { takeUntil } from 'rxjs/operators';
 
 import { IAppState } from '../store/state/app.state';
 import { getCurrentCoords } from '../store/actions/get-coords.actions';
-import { selectIsInit } from '../store/selectors/temperature-unit copy';
+import { selectIsInit } from '../store/selectors/is-init.selector';
 import { selectBgImage } from '../store/selectors/bg-image.selector';
 import { selectLanguage } from '../store/selectors/language.selector';
-import { selectTempUnit } from '../store/selectors/temperature-unit';
-import { takeUntil } from 'rxjs/operators';
+import { selectTempUnit } from '../store/selectors/temperature-unit.selector';
 import { setTemperatureUnit } from '../store/actions/temperature-unit.actions';
 import { setCurrentLanguage } from '../store/actions/language.actions';
 

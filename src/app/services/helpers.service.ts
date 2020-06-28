@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { DictService } from './translate-data.service';
 
 @Injectable()
@@ -7,7 +8,6 @@ export class HelpersService {
 	constructor(
 		private _dict: DictService,
 	) { }
-	//! Есть ли необходимость в этом отдельном модуле? Проверить как часто и где применяются методы отсюда
 
 	private setTempToFahrenheit = (value: number): number => {
 		const COEFFICIENT1: number = 1.8;
@@ -16,7 +16,7 @@ export class HelpersService {
 	};
 
 	public getTempAsString = (unit: string, temp: number): string => {
-		if (unit === 'f') {
+		if (unit === 'F') {
 			temp = this.setTempToFahrenheit(temp);
 		}
 		return `${(temp > 0) ? '+' : ''}${Math.round(temp)}°`;

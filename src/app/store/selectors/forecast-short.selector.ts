@@ -7,6 +7,6 @@ import { IForecastWeekJson } from 'src/app/models/forecast-week-json';
 const forecastState: (state: IAppState) => IForecastState = (state: IAppState) => state.forecast;
 
 export const selectForecastShort: MemoizedSelector<IAppState, IForecastWeekJson[]> = createSelector(
-  forecastState,
-  (state: IForecastState) => state.forecast.weekForecastData
+	forecastState,
+	(state: IForecastState) => state.forecast.weekForecastData
 );

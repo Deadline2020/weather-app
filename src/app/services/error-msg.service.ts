@@ -8,8 +8,7 @@ export class ErrorMsgService {
 	constructor() { }
 
 	private beepError = (): void => {
-		const beep: HTMLAudioElement = new Audio('assets/media/error.mp3');
-		beep.play();
+		new Audio('assets/media/error.mp3').play();
 	}
 
 	public onErrorMessage = (value: string): void => {

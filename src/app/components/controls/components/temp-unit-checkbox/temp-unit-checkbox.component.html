@@ -1,19 +1,19 @@
 <div class="wrapper-radio-btn">
-  <div
-    class="radio-btn radio-btn__temp-f"
-    (click)="onClick('f')"
-  >
-    °F
-  </div>
-  <div
-    class="radio-btn radio-btn__temp-c"
-    (click)="onClick('c')"
-  >
-    °C
-  </div>
-  <div
-    class="radio-btn__flap"
-    [class.radio-btn__flap-check]="temperatureUnit==='f'"
-  >
-  </div>
+    <div
+        class="btn radio-btn radio-btn__temp-f"
+        (click)="onClick('F')"
+    >
+        °F
+    </div>
+    <div
+        class="btn radio-btn radio-btn__temp-c"
+        (click)="onClick('C')"
+    >
+        °C
+    </div>
+    <div
+        class="radio-btn__flap"
+        [class.radio-btn__flap-check]="temperatureUnit==='F'"
+    >
+    </div>
 </div>

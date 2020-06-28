@@ -3,7 +3,10 @@ import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
-import { ECoordsActions, getCoordsSuccess, ICityCoordsActions, getCityCoordsMistake, ICoordsActions } from '../actions/get-coords.actions';
+import {
+	ECoordsActions, getCoordsSuccess, ICityCoordsActions,
+	getCityCoordsMistake, ICoordsActions
+} from '../actions/get-coords.actions';
 import { GetCoordsService } from '../../services/get-coords.service';
 import { getAllInfo, IGetAllInfoActions } from '../actions/get-all-info.actions';
 import { ICoordsJson } from 'src/app/models/coords-json';
@@ -23,6 +26,7 @@ export class GetCityCoordsEffects {
 					loadDataFinish(),
 				];
 			} else {
+				this.beepSuccess();
 				return [
 					getCoordsSuccess({ latitude: data.results[0].geometry.lat, longitude: data.results[0].geometry.lng }),
 					getAllInfo({ latitude: data.results[0].geometry.lat, longitude: data.results[0].geometry.lng, withBgImg: true }),
@@ -35,4 +39,8 @@ export class GetCityCoordsEffects {
 		private _actions$: Actions,
 		private _getCoordsService: GetCoordsService,
 	) { }
+
+	private beepSuccess = (): void => {
+		new Audio('assets/media/success.mp3').play();
+	}
 }

@@ -3,5 +3,5 @@ export interface ITemperatureUnitState {
 }
 
 export const initialTemperatureUnitState: ITemperatureUnitState = {
-	temperatureUnit: 'c',
+	temperatureUnit: 'C',
 };

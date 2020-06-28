@@ -11,14 +11,19 @@ export class SearchComponent implements OnInit {
 	@Input() public searchPlaceholder: string;
 	@Input() public searchBtn: string;
 	@Input() public isLoaded: boolean;
-	@Output() public onClickSearch: EventEmitter<string> = new EventEmitter();
+	@Input() public isRecordOn: boolean;
+	@Output() public clickSearch: EventEmitter<string> = new EventEmitter();
+	@Output() public clickVoiceSearch: EventEmitter<boolean> = new EventEmitter();
 
 	constructor() { }
 
 	public ngOnInit(): void { }
 
-	public onClick(): void {
-		this.onClickSearch.emit(this.inputSearchValue);
+	public onClickSearch(): void {
+		this.clickSearch.emit(this.inputSearchValue);
+	}
+	public onClickVoiceSearch(): void {
+		this.clickVoiceSearch.emit();
 	}
 
 }

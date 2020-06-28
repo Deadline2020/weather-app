@@ -7,6 +7,6 @@ import { IInfoLocation } from 'src/app/models/info-location';
 const infoLocationState: (state: IAppState) => IInfoLocationState = (state: IAppState) => state.infoLocation;
 
 export const selectInfoLocation: MemoizedSelector<IAppState, IInfoLocation> = createSelector(
-  infoLocationState,
-  (state: IInfoLocationState) => state.infoLocation
+	infoLocationState,
+	(state: IInfoLocationState) => state.infoLocation
 );

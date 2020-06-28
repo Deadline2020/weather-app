@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { ITranslateData } from '../models/translate-data';
 
 @Injectable()
@@ -68,6 +69,14 @@ export class DictService {
 			en: 'The request failed! Please repeat.',
 			ru: 'Ошибка запроса! Повторите пожалуйста.',
 			be: 'Памылка запыту! Паўтарыце калі ласка.',
+		};
+	}
+
+	public get temperature(): ITranslateData {
+		return {
+			en: ['Temperature: '],
+			ru: ['Температура: '],
+			be: ['Тэмпература: '],
 		};
 	}
 }

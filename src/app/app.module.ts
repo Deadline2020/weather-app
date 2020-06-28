@@ -41,7 +41,7 @@ import { ErrorMsgService } from './services/error-msg.service';
 		WeekForecastModule,
 		DailyForecastModule,
 		StoreModule.forRoot(appReducers),
-		EffectsModule.forRoot([ GetAllInfoEffects, GetCurCoordsEffects, GetCityCoordsEffects]),
+		EffectsModule.forRoot([GetAllInfoEffects, GetCurCoordsEffects, GetCityCoordsEffects]),
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
 	],
 	providers: [

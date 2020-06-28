@@ -11,7 +11,6 @@ import { GetInfoForecastService } from './get-info-forecast.service';
 import { IForecast } from '../models/forecast';
 import { IAppState } from '../store/state/app.state';
 import { selectLanguage } from '../store/selectors/language.selector';
-import { ICoords } from '../models/coords';
 import { selectBgImage } from '../store/selectors/bg-image.selector';
 import { IInfoRequest } from '../models/info-request';
 
@@ -40,9 +39,9 @@ export class GetAllInfoService implements OnDestroy {
 
 	public getAllInfo({ latitude, longitude, withBgImg, language = this.currentLang }: IInfoRequest):
 		Observable<[Array<IInfoLocation | string>, IForecast, string]> {
-		return forkJoin([// ! пробовал CombineLatest вроде тоже самое
+		return forkJoin([
 			this._getInfoLocation.getInfoLocation(latitude, longitude, language).pipe(
-				mergeMap((info: IInfoLocation) => { // ! а если switchMap?
+				mergeMap((info: IInfoLocation) => {
 					const curDate: Date = new Date(Date.now() + info.timeShift);
 					const timeOfDay: string = this._helpers.getTimeOfDay(curDate);
 					const season: string = this._helpers.getSeason(curDate);

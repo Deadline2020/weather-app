@@ -1,20 +1,20 @@
 <div class="daily-forecast">
-  <div class="wrapper daily-forecast__name">
-    <p>
-      {{( dailyForecast.locationInfo$ | async).city}}, {{(dailyForecast.locationInfo$ | async).country}}
-    </p>
-  </div>
-  <div class="wrapper daily-forecast__date">
-    {{ dailyForecast.dateInLocation$ | async }}
-  </div>
-  <div class="wrapper daily-forecast__info">
-    <app-main-forecast-info
-      [currentTemp]="(dailyForecast.temperature$ | async).curTemperature"
-      [iconPath]="(dailyForecast.forecastParams$ | async).curIcon"
-      [summary]="(dailyForecast.forecastParams$ | async).curSummary"
-      [feelsLike]="(dailyForecast.temperature$ | async).apparentTemperature"
-      [wind]="(dailyForecast.forecastParams$ | async).curWind"
-      [humidity]="(dailyForecast.forecastParams$ | async).curHumidity">
-    </app-main-forecast-info>
-  </div>
+    <div class="wrapper daily-forecast__name">
+        <p>
+            {{( dailyForecast.locationInfo$ | async).city}}, {{(dailyForecast.locationInfo$ | async).country}}
+        </p>
+    </div>
+    <div class="wrapper daily-forecast__date">
+        {{ dailyForecast.dateInLocation$ | async }}
+    </div>
+    <div class="wrapper daily-forecast__info">
+        <app-main-forecast-info
+            [currentTemp]="(dailyForecast.temperature$ | async).curTemperature"
+            [iconPath]="(dailyForecast.forecastParams$ | async).curIcon"
+            [summary]="(dailyForecast.forecastParams$ | async).curSummary"
+            [feelsLike]="(dailyForecast.temperature$ | async).apparentTemperature"
+            [wind]="(dailyForecast.forecastParams$ | async).curWind"
+            [humidity]="(dailyForecast.forecastParams$ | async).curHumidity">
+        </app-main-forecast-info>
+    </div>
 </div>

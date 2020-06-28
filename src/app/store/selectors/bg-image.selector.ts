@@ -6,6 +6,6 @@ import { IUrlBgImgState } from '../state/bg-image.state';
 const bgImageState: (state: IAppState) => IUrlBgImgState = (state: IAppState) => state.urlBgImg;
 
 export const selectBgImage: MemoizedSelector<IAppState, string> = createSelector(
-  bgImageState,
-  (state: IUrlBgImgState) => state.urlBgImg
+	bgImageState,
+	(state: IUrlBgImgState) => state.urlBgImg
 );

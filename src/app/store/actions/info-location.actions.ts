@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+
 import { IInfoLocation } from 'src/app/models/info-location';
 
 export enum EInfoLocationActions {
@@ -10,11 +11,6 @@ export interface IInfoLocationActions extends Action {
 	type: string;
 	payload: IInfoLocation;
 }
-
-// export interface IInfoLocationRequestActions extends Action {
-// 	type: string;
-// 	payload: IInfoLocation;
-// }
 
 export function getInfoLocationSuccess(payload: IInfoLocation): IInfoLocationActions {
 	return {

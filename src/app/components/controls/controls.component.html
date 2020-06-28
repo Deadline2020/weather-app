@@ -9,12 +9,18 @@
 		(onClickTempUnit)="controlsService.changeTempUnit($event)"
 	>
 	</app-temp-unit-checkbox>
-  <app-search
+	<app-speaker-btn
+		(clickVoiceSpeaker)="controlsService.speakerStart()"
+	>
+	</app-speaker-btn>	
+    <app-search
 		[inputSearchValue]="controlsService.inputSearchValue"
 		[searchPlaceholder]="controlsService.searchPlaceholder"
 		[searchBtn]="controlsService.searchBtn"
 		[isLoaded]="controlsService.isLoaded$ | async"
-		(onClickSearch)="controlsService.searchCity($event)"
+		[isRecordOn]="controlsService.isRecordOn"
+		(clickSearch)="controlsService.searchCity($event)"
+		(clickVoiceSearch)="controlsService.recordStart()"
 	>
 	</app-search>
 </div>

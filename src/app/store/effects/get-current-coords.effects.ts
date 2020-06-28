@@ -3,10 +3,12 @@ import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
-import { ICoordsActions, ECoordsActions, getCoordsSuccess, ICurrentCoordsActions } from '../actions/get-coords.actions';
+import {
+	ICoordsActions, ECoordsActions, getCoordsSuccess,
+	ICurrentCoordsActions
+} from '../actions/get-coords.actions';
 import { GetCoordsService } from '../../services/get-coords.service';
 import { ICoords } from 'src/app/models/coords';
-// import { IInfoRequest } from 'src/app/models/info-request';
 import { getAllInfo, IGetAllInfoActions } from '../actions/get-all-info.actions';
 
 @Injectable()

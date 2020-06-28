@@ -1,64 +1,65 @@
 @import "~mapbox-gl/dist/mapbox-gl.css";
 @import "~swiper/css/swiper.css";
-              
-
 html {
-  box-sizing: border-box;
-  font-size: 20px;
-  // background-color: #33495f;
-  color: white;
-  font-family: "Arial", "Helvetica", sans-serif;
-  text-transform: uppercase;
-  font-weight: 700;
+    box-sizing: border-box;
+    font-weight: 700;
+    font-size: 20px;
+    font-family: "Arial", "Helvetica", sans-serif;
+    // background-color: #33495f;
+    color: white;
+    text-transform: uppercase;
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
 }
 
 .btn {
-  position: relative;
-  width: 44px;
-  height: 44px;
-  overflow: hidden;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 44px;
-  // font-family: "Arial", "Helvetica", sans-serif;
-  text-align: center;
-  color: white;
-  background: #4c525566;
-  cursor: pointer;
-  transition: 0.2s ease-in-out;
-  user-select: none;
-  &::before {
-    content: "";
-    position: absolute;
-    top: -8px;
-    left: -75px;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5));
-    transform: skewX(-45deg);
-  }
-  &:hover::before {
-    left: 150px;
-    transition: 0.5s ease-in-out;
-  }
+    position: relative;
+    width: 44px;
+    height: 44px;
+    overflow: hidden;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 44px;
+    // font-family: "Arial", "Helvetica", sans-serif;
+    text-align: center;
+    color: white;
+    background: #4c525566;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    user-select: none;
+    &::before {
+        content: "";
+        position: absolute;
+        top: -8px;
+        left: -75px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5));
+        transform: skewX(-45deg);
+    }
+    &:hover::before {
+        left: 150px;
+        transition: 0.5s ease-in-out;
+    }
+    &:hover {
+        background: green;
+    }
 }
 
 .wrapper {
-  // display: flex;
-  // flex-wrap: wrap;
-  // justify-content: space-between;
-  // min-height: 84px;
-  padding: 20px;
-  background-color: hsla(0, 0%, 0%, 0.7);
-  border: 1px solid gray;
-  border-radius: 5px;
-  margin: 5px;
+    margin: 5px;
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: space-between;
+    // min-height: 84px;
+    padding: 20px;
+    background-color: hsla(0, 0%, 0%, 0.7);
+    border: 1px solid gray;
+    border-radius: 5px;
 }

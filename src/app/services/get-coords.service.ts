@@ -1,16 +1,17 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { takeUntil, map } from 'rxjs/operators';
-import { Observable, Subscriber, Subject } from 'rxjs';
+import { takeUntil, map, catchError } from 'rxjs/operators';
+import { Observable, Subscriber, Subject, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 import { ICoords } from '../models/coords';
 import { selectCoords } from '../store/selectors/coords.selector';
 import { IAppState } from '../store/state/app.state';
-import { HttpClient } from '@angular/common/http';
 import { ICoordsJson } from '../models/coords-json';
 import { ErrorMsgService } from './error-msg.service';
 import { DictService } from './translate-data.service';
 import { selectLanguage } from '../store/selectors/language.selector';
+import { loadDataFinish } from '../store/actions/isLoad.actions';
 
 @Injectable()
 export class GetCoordsService implements OnDestroy {
@@ -63,7 +64,13 @@ export class GetCoordsService implements OnDestroy {
 					this._errorMsg.onErrorMessage(this._dict.errorNameCity[this._currentLang]);
 				}
 				return data;
-			}));
+			}),
+			catchError((err: Error) => {
+				this._errorMsg.onErrorMessage(this._dict.errorNameCity[this._currentLang]);
+				this._store.dispatch(loadDataFinish());
+				return throwError(err);
+			})
+		);
 	}
 
 	public ngOnDestroy(): void {

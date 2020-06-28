@@ -1,15 +1,15 @@
 import { Action } from '@ngrx/store';
 
 export enum EIsInitActions {
-	appInited = '[InitApp] App Init',
+	appInit = '[InitApp] App Init',
 }
 
-export interface IIsInitedActions extends Action {
+export interface IIsInitActions extends Action {
 	type: string;
 }
 
-export function setIsInitTrue(): IIsInitedActions {
+export function setIsInitTrue(): IIsInitActions {
 	return {
-		type: EIsInitActions.appInited,
+		type: EIsInitActions.appInit,
 	};
 }

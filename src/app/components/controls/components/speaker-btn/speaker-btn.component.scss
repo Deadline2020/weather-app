@@ -1,0 +1,18 @@
+:host {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.btn-speak {
+    padding: 5px;
+    border: 1px gray solid;
+    background-color: gray;
+    border-radius: 5px;
+    outline: none;
+    &:hover {
+        background-color: green;
+    }
+    &:active {
+        border-color: white;
+    }
+}

@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+
 import { ICoords } from 'src/app/models/coords';
 
 export enum ECoordsActions {

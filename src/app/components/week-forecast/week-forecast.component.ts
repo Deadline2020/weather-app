@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SwiperOptions } from 'swiper';
+
 import { WeekForecastService } from './services/week-forecast.service';
 
 @Component({

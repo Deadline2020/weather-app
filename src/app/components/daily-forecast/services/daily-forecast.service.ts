@@ -10,7 +10,7 @@ import { IForecast } from 'src/app/models/forecast';
 import { selectLanguage } from 'src/app/store/selectors/language.selector';
 import { selectInfoLocation } from 'src/app/store/selectors/info-location.selector';
 import { selectForecast } from 'src/app/store/selectors/forecast.selector';
-import { selectTempUnit } from 'src/app/store/selectors/temperature-unit';
+import { selectTempUnit } from 'src/app/store/selectors/temperature-unit.selector';
 import { HelpersService } from 'src/app/services/helpers.service';
 
 @Injectable()

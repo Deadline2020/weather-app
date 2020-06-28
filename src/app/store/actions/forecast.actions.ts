@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+
 import { IForecast } from 'src/app/models/forecast';
 
 export enum EForecastActions {
