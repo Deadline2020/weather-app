@@ -6,7 +6,7 @@ export const isInitReducer: (state: IIsInitState, action: IIsInitActions) => IIs
 	action: IIsInitActions,
 ): IIsInitState => {
 	switch (action.type) {
-		case EIsInitActions.appInit: {
+		case EIsInitActions.AppInit: {
 			return { ...state, isInit: true };
 		}
 		default: return state;

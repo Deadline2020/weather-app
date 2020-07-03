@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { IInfoLocation } from '../models/info-location';
 import { IInfoLocationJson } from '../models/info-location-json';
+import { HelpersService } from './helpers.service';
 
 @Injectable()
 export class GetInfoLocationService {
@@ -12,9 +13,10 @@ export class GetInfoLocationService {
 
 	constructor(
 		private _httpClient: HttpClient,
+		private _helpersServices: HelpersService,
 	) { }
 
-	public getInfoLocation(lat: number, long: number, lang: string): Observable<IInfoLocation> {
+	public getInfoLocation = (lat: number, long: number, lang: string): Observable<IInfoLocation> => {
 		const queryUrl: string = `https://api.opencagedata.com/geocode/v1/json?q=${lat}%2C%20${long}&key=${this._KEY}&language=${lang}&pretty=1`;
 		return this._httpClient.get(queryUrl).pipe(
 			map((data: IInfoLocationJson) => {
@@ -35,9 +37,7 @@ export class GetInfoLocationService {
 				} else if (data.results[0].components.hasOwnProperty('hamlet')) {
 					city = data.results[0].components.hamlet;
 				}
-				const curPositionOffset: number = data.results[0].annotations.timezone.offset_sec;
-				const localOffset: number = new Date().getTimezoneOffset() * SEC_IN_MIN;
-							const timeShift: number = (curPositionOffset + localOffset) * MILLISEC_IN_SEC;
+				const timeShift: number = this._helpersServices.getTimeShift(data.results[0].annotations.timezone.offset_sec);
 
 				return { country, city, timeShift };
 			})

@@ -4,13 +4,13 @@ import { Observable } from 'rxjs/internal/Observable';
 import { select, Store } from '@ngrx/store';
 import { takeUntil } from 'rxjs/operators';
 
-import { selectLanguage } from 'src/app/store/selectors/language.selector';
-import { DictService } from 'src/app/services/translate-data.service';
-import { selectTempUnit } from 'src/app/store/selectors/temperature-unit.selector';
 import { IAppState } from 'src/app/store/state/app.state';
-import { HelpersService } from 'src/app/services/helpers.service';
-import { selectForecast } from 'src/app/store/selectors/forecast.selector';
 import { IForecast } from 'src/app/models/forecast';
+import { selectLanguage } from 'src/app/store/selectors/language.selector';
+import { selectTempUnit } from 'src/app/store/selectors/temperature-unit.selector';
+import { selectForecast } from 'src/app/store/selectors/forecast.selector';
+import { DictService } from 'src/app/services/translate-data.service';
+import { HelpersService } from 'src/app/services/helpers.service';
 
 @Injectable()
 export class VoiceService implements OnDestroy {
@@ -27,7 +27,6 @@ export class VoiceService implements OnDestroy {
 		private _store: Store<IAppState>,
 		private _dict: DictService,
 		private _helperService: HelpersService,
-
 	) {
 		this.currentLang$.subscribe((lang: string) => {
 			this._currentLang = lang;
@@ -51,7 +50,6 @@ export class VoiceService implements OnDestroy {
 		const shortSummary: string = this._forecast.curShortlyForecast;
 		const wing: string = this._helperService.getWindSpeedAsString(this._forecast.curWindSpeed, this._currentLang);
 		const humidity: string = this._helperService.getHumidityAsString(this._forecast.curHumidity, this._currentLang);
-
 		return `${tempWord}${tempValue}${this._tempUnit}. ${shortSummary} ${wing}, ${humidity}`;
 	}
 

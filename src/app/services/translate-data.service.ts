@@ -78,5 +78,13 @@ export class DictService {
 			ru: ['Температура: '],
 			be: ['Тэмпература: '],
 		};
+	
+	}
+	public get toMainPage(): ITranslateData {
+		return {
+			en: ['To home page'],
+			ru: ['На главную страницу'],
+			be: ['На галоўную старонку'],
+		};
 	}
 }

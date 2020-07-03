@@ -15,7 +15,8 @@ export class GetBgImageService {
 		private _httpClient: HttpClient,
 		private _helpers: HelpersService,
 	) { }
-	public getBGImgData([season, dayTime]: [string, string]): Observable<string> {
+
+	public getBGImgData = ([season, dayTime]: [string, string]): Observable<string> => {
 		const queryUrl: string = `${this._BASE_URL}&tags=${season}%2C${dayTime}%2Cweather&tag_mode=all&per_page=100&extras=url_l&format=json&nojsoncallback=1`;
 		return this._httpClient.get(queryUrl).pipe(
 			map((data: IBgImageJson): string => {

@@ -1,0 +1,35 @@
+<div class="wrapper hour-forecast">
+    <div class="hour-forecast__hour">
+        {{forecast.hour | number:'2.0-0'}}
+    </div>
+    <div class="hour-forecast__wrapper">
+        <span class="hour-forecast__temp-value">
+            {{forecast.temperature}}
+        </span>
+        <img
+            class="hour-forecast__temp-icon"
+            src={{forecast.icon}}
+            alt="forecast"
+        >
+    </div>
+    <div class="hour-forecast__wrapper">  
+        <img
+            class="hour-forecast__prop-icon"
+            src="assets/img/wind-icon.svg"
+            alt="wind"
+        > 
+        <span class="hour-forecast__prop-value">
+            {{forecast.windSpeed}}
+        </span>  
+    </div>
+    <div class="hour-forecast__wrapper">
+        <img
+        class="hour-forecast__prop-icon"
+        src="assets/img/humidity-icon.svg"
+        alt="humidity"
+        > 
+        <span class="hour-forecast__prop-value">
+            {{forecast.humidity | percent}}
+        </span>  
+    </div>    
+</div>

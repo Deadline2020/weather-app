@@ -5,21 +5,13 @@
 </div>
 
 <ng-template #mainPage>
-    <div
-        class="app__main"
-        [style.backgroundImage]="'url('+(appService.bgImage$ | async)+')'"
+    <router-outlet></router-outlet>
+    <app-error-message
+        [errorMessageText]="errorMsg.errorMessageText"
     >
-        <app-controls></app-controls>
-        <app-daily-forecast></app-daily-forecast>
-        <app-week-forecast></app-week-forecast>
-        <app-map></app-map>
-    </div>
-        <app-error-message
-            [errorMessageText]="errorMsg.errorMessageText"
-        >
-        </app-error-message> 
+    </app-error-message> 
 </ng-template>
 
 <ng-template #preloadingPage>
-    <div class="app__preloader"></div>
+    <div class="preloader"></div>
 </ng-template>

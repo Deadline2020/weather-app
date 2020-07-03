@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 export enum EIsInitActions {
-	appInit = '[InitApp] App Init',
+	AppInit = '[InitApp] App Init',
 }
 
 export interface IIsInitActions extends Action {
@@ -10,6 +10,6 @@ export interface IIsInitActions extends Action {
 
 export function setIsInitTrue(): IIsInitActions {
 	return {
-		type: EIsInitActions.appInit,
+		type: EIsInitActions.AppInit,
 	};
 }

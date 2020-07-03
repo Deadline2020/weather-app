@@ -1,0 +1,43 @@
+    <ng-container
+       *ngTemplateOutlet="futureForecastService.isNewRequest ? preloadingPage : hourlyPage">
+    </ng-container>
+
+
+<ng-template #hourlyPage>
+    <div 
+        class="list"
+        [style.backgroundImage]="'url('+(appService.bgImage$ | async)+')'"
+    >
+        <div class="wrapper header">
+            <p class="list__title">
+                {{(futureForecastService.arrForecastDay$ | async)[currentID].dayAsString}}
+                - {{(futureForecastService.arrForecastDay$ | async)[currentID].date | date:"dd.MM.yyyy"}}
+            </p>
+            <button
+                class="btn list__btn"
+                (click)="routerService.goToMainPage()"
+            >
+                {{_dict.toMainPage[(futureForecastService.currentLang$ | async)]}}
+            </button>
+        </div>
+        <div
+            class="list__wrapper"> 
+            <app-hourly-forecast
+                *ngFor="let forecast of (futureForecastService.arrForecastHour$ | async)[currentID]"
+                [forecast]='forecast'
+                >
+            </app-hourly-forecast>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #preloadingPage>
+    <div class="preloader"></div>
+</ng-template>
+
+
+
+
+
+
+

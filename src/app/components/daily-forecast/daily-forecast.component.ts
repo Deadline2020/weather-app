@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { DailyForecastService } from './services/daily-forecast.service';
 
@@ -7,12 +7,9 @@ import { DailyForecastService } from './services/daily-forecast.service';
 	templateUrl: './daily-forecast.component.html',
 	styleUrls: ['./daily-forecast.component.scss']
 })
-export class DailyForecastComponent implements OnInit {
+export class DailyForecastComponent {
 
 	constructor(
-		public dailyForecast: DailyForecastService,
+		public dailyForecastService: DailyForecastService,
 	) { }
-
-	public ngOnInit(): void { }
-
 }

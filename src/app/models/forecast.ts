@@ -1,4 +1,4 @@
-import { IForecastWeekJson } from './forecast-week-json';
+import { IForecastDayJson } from './forecast-day-json';
 
 export interface IForecast {
 	curShortlyForecast: string;
@@ -8,5 +8,5 @@ export interface IForecast {
 	curApparentTemperature: number;
 	curHumidity: number;
 	curWindSpeed: number;
-	weekForecastData: IForecastWeekJson[];
+	weeklyForecastData: IForecastDayJson[];
 }

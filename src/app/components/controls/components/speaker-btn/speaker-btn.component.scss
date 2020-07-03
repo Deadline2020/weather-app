@@ -1,18 +1,20 @@
 :host {
-    margin-left: auto;
     margin-right: 20px;
+    margin-left: auto;
+    @media (max-width: 768px) {
+        margin: 0 0 0 0;
+    }
 }
 
 .btn-speak {
     padding: 5px;
-    border: 1px gray solid;
     background-color: gray;
+    border: 1px gray solid;
     border-radius: 5px;
-    outline: none;
     &:hover {
         background-color: green;
     }
     &:active {
-        border-color: white;
+        border: 1px white solid;
     }
 }

@@ -1,0 +1,9 @@
+<div
+    class="main"
+    [style.backgroundImage]="'url('+(appService.bgImage$ | async)+')'"
+>
+    <app-controls></app-controls>
+    <app-daily-forecast></app-daily-forecast>
+    <app-weekly-forecast></app-weekly-forecast>
+    <app-map></app-map>
+</div>

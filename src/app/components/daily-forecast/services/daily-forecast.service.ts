@@ -3,7 +3,6 @@ import { Store, select } from '@ngrx/store';
 import { Observable, combineLatest, timer } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { DictService } from 'src/app/services/translate-data.service';
 import { IAppState } from 'src/app/store/state/app.state';
 import { IInfoLocation } from 'src/app/models/info-location';
 import { IForecast } from 'src/app/models/forecast';
@@ -11,7 +10,9 @@ import { selectLanguage } from 'src/app/store/selectors/language.selector';
 import { selectInfoLocation } from 'src/app/store/selectors/info-location.selector';
 import { selectForecast } from 'src/app/store/selectors/forecast.selector';
 import { selectTempUnit } from 'src/app/store/selectors/temperature-unit.selector';
+import { DictService } from 'src/app/services/translate-data.service';
 import { HelpersService } from 'src/app/services/helpers.service';
+import { RouterService } from 'src/app/services/router.service';
 
 @Injectable()
 export class DailyForecastService {
@@ -35,46 +36,52 @@ export class DailyForecastService {
 		this.forecastInfo$,
 		this.currentLang$,
 	]).pipe(
-		map((data: [string, IForecast, string]) => { // ! может вынести в отдельную функцию?
-			const curTemperature: string = this._helperService.getTempAsString(data[0], data[1].curTemperature);
-			const apparentTemperature: string = this._helperService.getApparentTempAsString(data[0], data[1].curTemperature, data[2]);
-			return { curTemperature, apparentTemperature };
-		}));
+		map((data: [string, IForecast, string]) => this.getFormattedTemperature(data[0], data[1].curTemperature, data[2]))
+	);
 
 	public forecastParams$: Observable<{ curIcon: string, curSummary: string, curWind: string, curHumidity: string }> = combineLatest([
 		this.forecastInfo$,
 		this.currentLang$,
 	]).pipe(
-		map((data: [IForecast, string]) => {// ! может вынести в отдельную функцию?
-			const curIcon: string = `assets/img/${data[0].curIcon}.svg`;
-			const curSummary: string = data[0].curSummary;
-			const curWind: string = this._helperService.getWindSpeedAsString(data[0].curWindSpeed, data[1]);
-			const curHumidity: string = this._helperService.getHumidityAsString(data[0].curHumidity, data[1]);
-			return { curIcon, curSummary, curWind, curHumidity };
-		}));
+		map((data: [IForecast, string]) => this.getFormattedForecastParams(data[0], data[1]))
+	);
 
 	constructor(
 		private _store: Store<IAppState>,
 		private _dict: DictService,
 		private _helperService: HelpersService,
+		private _routerService: RouterService,
 	) { }
 
 	private getFormattedDateInLocation = (timeShift: number, lang: string): string => {
-
 		const TWO_DIGIT_NUMBER: number = 10;
 		const currentDate: Date = new Date(Date.now() + timeShift);
-
 		const day: number = currentDate.getDate();
 		const dayOfWeek: number = currentDate.getDay();
 		const month: number = currentDate.getMonth();
 		const hour: number = currentDate.getHours();
 		const min: number = currentDate.getMinutes();
 		const sec: number = currentDate.getSeconds();
-
 		const dateToString: string = `${this._dict.dayOfWeek[lang][dayOfWeek]} - ${day} ${this._dict.month[lang][month]} - `;
 		const timeToString: string = ` ${(hour < TWO_DIGIT_NUMBER) ? `0${hour}` : `${hour}`}:${(min < TWO_DIGIT_NUMBER) ? `0${min}` : `${min}`}:${(sec < TWO_DIGIT_NUMBER) ? `0${sec}` : `${sec}`}`;
-
 		return dateToString + timeToString;
 	};
 
+	private getFormattedTemperature = (tempUnit: string, temperature: number, lang: string) => {
+		const curTemperature: string = this._helperService.getTempAsString(tempUnit, temperature);
+		const apparentTemperature: string = this._helperService.getApparentTempAsString(tempUnit, temperature, lang);
+		return { curTemperature, apparentTemperature };
+	};
+
+	private getFormattedForecastParams = (forecast: IForecast, lang: string) => {
+		const curIcon: string = `assets/img/${forecast.curIcon}.svg`;
+		const curSummary: string = forecast.curSummary;
+		const curWind: string = this._helperService.getWindSpeedAsString(forecast.curWindSpeed, lang);
+		const curHumidity: string = this._helperService.getHumidityAsString(forecast.curHumidity, lang);
+		return { curIcon, curSummary, curWind, curHumidity };
+	};
+
+	public goToHourlyForecast = (): void => {
+		this._routerService.goToHourlyForecast(0);
+	}
 }

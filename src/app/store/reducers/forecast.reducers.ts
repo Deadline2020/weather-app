@@ -1,9 +1,9 @@
-import { IForecastActions, EForecastActions } from '../actions/forecast.actions';
+import { IForecastDayActions, EForecastActions } from '../actions/forecast.actions';
 import { IForecastState, initialForecastState } from '../state/forecast.state';
 
-export const forecastReducer: (state: IForecastState, action: IForecastActions) => IForecastState = (
+export const forecastReducer: (state: IForecastState, action: IForecastDayActions) => IForecastState = (
 	state: IForecastState = initialForecastState,
-	action: IForecastActions,
+	action: IForecastDayActions,
 ): IForecastState => {
 	switch (action.type) {
 		case EForecastActions.GetDayForecastSuccess: {

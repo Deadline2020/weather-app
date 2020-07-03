@@ -1,4 +1,4 @@
-export interface IForecastWeek {
+export interface IForecastDay {
 	dayAsString: string;
 	date: Date;
 	tempAsString: string;

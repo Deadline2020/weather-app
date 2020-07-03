@@ -1,0 +1,58 @@
+.short-forecast {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    height: 100%;
+    cursor: grab;
+    &__date {
+        flex: 1 1 100%;
+        text-align: center;
+        text-transform: capitalize;
+        @media (max-width: 560px) {
+            text-align: left;
+            margin-left: 10px;
+        }
+    }
+    &__temp {
+        display: flex;
+        flex: 1 1 60%;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.8rem;
+    }
+    &__icon {
+        flex: 1 1 40%;
+    }
+    &__day {
+        padding: 15px 0 5px 0;
+    }
+    &__btn {
+        position: absolute;
+        top: 10px;
+        right: 0;
+        width: 36px;
+        height: 36px;
+        background: transparent;
+        border: 1px gray solid;
+        border-radius: 5px;
+        &:active {
+            border-color: white;
+        }
+        &:hover {
+            background-color: green;
+        }
+        @media (max-width: 768px) {
+            width: 44px;
+            height: 44px;
+            right: 10px;
+        }
+        @media (max-width: 400px) {
+            width: 36px;
+            height: 36px;
+            top: 0;
+        }
+    }
+    &__btn-img {
+        width: 100%;
+    }
+}

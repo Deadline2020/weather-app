@@ -1,4 +1,4 @@
-export interface IForecastWeekJson {
+export interface IForecastDayJson {
 	summary: string;
 	icon: string;
 	temperatureHigh: number;

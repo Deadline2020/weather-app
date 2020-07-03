@@ -3,9 +3,9 @@ import { Observable, Subscriber } from 'rxjs';
 
 @Injectable()
 export class SpeechRecognitionService {
+
 	public recognition: SpeechRecognition;
 
-	constructor() {	}
 	public recordOn$ = (): Observable<string> => {
 		return new Observable((observer: Subscriber<string>) => {
 			window.SpeechRecognition = window['webkitSpeechRecognition'] || window['SpeechRecognition'];

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MapService } from './services/map.service';
 
 @Component({
@@ -6,9 +6,9 @@ import { MapService } from './services/map.service';
 	templateUrl: './map.component.html',
 	styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapComponent {
 
-	constructor(public mapServices: MapService, ) { }
-
-	public ngOnInit(): void { }
+	constructor(
+		public mapServices: MapService,
+	) { }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ControlsService } from './services/controls.service';
 
@@ -7,12 +7,9 @@ import { ControlsService } from './services/controls.service';
 	templateUrl: './controls.component.html',
 	styleUrls: ['./controls.component.scss']
 })
-export class ControlsComponent implements OnInit {
+export class ControlsComponent {
 
 	constructor(
 		public controlsService: ControlsService,
 	) { }
-
-	public ngOnInit(): void { }
-
 }

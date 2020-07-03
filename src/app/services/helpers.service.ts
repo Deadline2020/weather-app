@@ -36,7 +36,7 @@ export class HelpersService {
 		return `${this._dict.humidity[lang]} ${Math.round(value * PERCENT)}%`;
 	};
 
-	public getRandomNum(num: number): number {
+	public getRandomNum = (num: number): number => {
 		return Math.floor(Math.random() * num);
 	}
 
@@ -82,4 +82,12 @@ export class HelpersService {
 		return season;
 	};
 
+	public getTimeShift = (offsetInSeconds: number): number => {
+		const SEC_IN_MIN: number = 60;
+		const MILLISEC_IN_SEC: number = 1000;
+		const curPositionOffset: number = offsetInSeconds;
+		const localOffset: number = new Date().getTimezoneOffset() * SEC_IN_MIN;
+		const timeShift: number = (curPositionOffset + localOffset) * MILLISEC_IN_SEC;
+		return timeShift;
+	}
 }

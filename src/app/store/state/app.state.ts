@@ -6,27 +6,33 @@ import { ICoordsState, initialCoordsState } from './coords.state';
 import { IInfoLocationState, initialInfoLocationState } from './info-location.state';
 import { IForecastState, initialForecastState } from './forecast.state';
 import { IIsInitState, initialIsInitState } from './is-init.state';
+import { initialForecastHourlyState, IForecastHourlyState } from './forecast-hourly.state';
+import { IIsNewRequestState, initialIsNewRequestState } from './is-new-request.state';
 
 export interface IAppState {
+	isInit: IIsInitState;
 	isLoaded: IIsLoadedState;
+	isNewRequest: IIsNewRequestState;
 	urlBgImg: IUrlBgImgState;
 	language: ILanguageState;
 	temperatureUnit: ITemperatureUnitState;
 	coords: ICoordsState;
 	infoLocation: IInfoLocationState;
 	forecast: IForecastState;
-	isInit: IIsInitState;
+	forecastHourly: IForecastHourlyState;
 }
 
 export const initialAppState: IAppState = {
+	isInit: initialIsInitState,
 	isLoaded: initialIsLoadedState,
+	isNewRequest: initialIsNewRequestState,
 	urlBgImg: initialUrlBgImgState,
 	language: initialLanguageState,
 	temperatureUnit: initialTemperatureUnitState,
 	coords: initialCoordsState,
 	infoLocation: initialInfoLocationState,
 	forecast: initialForecastState,
-	isInit: initialIsInitState,
+	forecastHourly: initialForecastHourlyState,
 };
 
 export const getInitialState: () => IAppState = (): IAppState => {

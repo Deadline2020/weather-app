@@ -1,16 +1,20 @@
 :host {
     flex-basis: 38%;
-    // margin-left: auto;
+    @media (max-width: 768px) {
+        flex-basis: 50%;
+    }
+    @media (max-width: 560px) {
+        flex-basis: 100%;
+        margin-top: 10px;
+    }
 }
 
 .controls-search {
     display: flex;
     &__input {
-        // flex: 1 1;
         width: 75%;
         height: 44px;
         padding: 0 0 0 15px;
-        // font-family: "Arial", "Helvetica", sans-serif;
         font-size: 0.8rem;
         color: white;
         background: #4c525566;
@@ -27,19 +31,14 @@
         &:focus::placeholder {
             text-indent: 500px;
         }
-        // &::-webkit-search-cancel-button {
-        //   display: none;
-        // }
     }
     &__btn-search {
         width: 100px;
-        // font-weight: bold;
         background: grey;
         border-width: 1px 1px 1px 0;
         border-style: solid;
         border-color: gray;
         border-radius: 0 5px 5px 0;
-        outline: none;
         &:hover {
             background: green;
         }
@@ -63,7 +62,6 @@
     position: relative;
     width: 44px;
     height: 44px;
-    // line-height: 50px;
     text-align: center;
     background: #4c525566;
     border-width: 1px 0 1px 0;

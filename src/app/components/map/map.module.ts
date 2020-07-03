@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MapComponent } from './map.component';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+
+import { MapComponent } from './map.component';
 import { MapService } from './services/map.service';
 
 @NgModule({

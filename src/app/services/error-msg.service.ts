@@ -5,8 +5,6 @@ export class ErrorMsgService {
 
 	public errorMessageText: string = null;
 
-	constructor() { }
-
 	private beepError = (): void => {
 		new Audio('assets/media/error.mp3').play();
 	}

@@ -4,15 +4,15 @@ import { map, mergeMap, takeUntil } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
 
 import { IInfoLocation } from '../models/info-location';
+import { IForecast } from '../models/forecast';
+import { IInfoRequest } from '../models/info-request';
+import { IAppState } from '../store/state/app.state';
+import { selectLanguage } from '../store/selectors/language.selector';
+import { selectBgImage } from '../store/selectors/bg-image.selector';
 import { GetInfoLocationService } from './get-info-location.service';
 import { GetBgImageService } from './get-info-bg-image.service';
 import { HelpersService } from './helpers.service';
 import { GetInfoForecastService } from './get-info-forecast.service';
-import { IForecast } from '../models/forecast';
-import { IAppState } from '../store/state/app.state';
-import { selectLanguage } from '../store/selectors/language.selector';
-import { selectBgImage } from '../store/selectors/bg-image.selector';
-import { IInfoRequest } from '../models/info-request';
 
 @Injectable()
 export class GetAllInfoService implements OnDestroy {
@@ -37,8 +37,8 @@ export class GetAllInfoService implements OnDestroy {
 		});
 	}
 
-	public getAllInfo({ latitude, longitude, withBgImg, language = this.currentLang }: IInfoRequest):
-		Observable<[Array<IInfoLocation | string>, IForecast, string]> {
+	public getAllInfo = ({ latitude, longitude, withBgImg, language = this.currentLang }: IInfoRequest):
+		Observable<[Array<IInfoLocation | string>, IForecast, string]> => {
 		return forkJoin([
 			this._getInfoLocation.getInfoLocation(latitude, longitude, language).pipe(
 				mergeMap((info: IInfoLocation) => {

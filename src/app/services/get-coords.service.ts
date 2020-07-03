@@ -5,13 +5,13 @@ import { Observable, Subscriber, Subject, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { ICoords } from '../models/coords';
-import { selectCoords } from '../store/selectors/coords.selector';
-import { IAppState } from '../store/state/app.state';
 import { ICoordsJson } from '../models/coords-json';
+import { IAppState } from '../store/state/app.state';
+import { loadDataFinish } from '../store/actions/isLoad.actions';
+import { selectCoords } from '../store/selectors/coords.selector';
+import { selectLanguage } from '../store/selectors/language.selector';
 import { ErrorMsgService } from './error-msg.service';
 import { DictService } from './translate-data.service';
-import { selectLanguage } from '../store/selectors/language.selector';
-import { loadDataFinish } from '../store/actions/isLoad.actions';
 
 @Injectable()
 export class GetCoordsService implements OnDestroy {
@@ -36,7 +36,7 @@ export class GetCoordsService implements OnDestroy {
 		});
 	}
 
-	public getCurLocation(): Observable<ICoords> {
+	public getCurLocation = (): Observable<ICoords> => {
 		const options: PositionOptions = {
 			enableHighAccuracy: true,
 			timeout: 5000,
@@ -56,7 +56,7 @@ export class GetCoordsService implements OnDestroy {
 		});
 	}
 
-	public getCityLocation(nameCity: string): Observable<ICoordsJson> {
+	public getCityLocation = (nameCity: string): Observable<ICoordsJson> => {
 		const queryUrl: string = `https://api.opencagedata.com/geocode/v1/json?q=${nameCity}&key=${this._KEY}&language=en&pretty=1`;
 		return this._httpClient.get(queryUrl).pipe(
 			map((data: ICoordsJson) => {

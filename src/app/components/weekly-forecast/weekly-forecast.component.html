@@ -1,0 +1,36 @@
+<div class="wrapper swiper_vert">
+    <swiper
+	class="swiper-container"
+	[config]="config_vert">
+		<div class="swiper-wrapper swiper-wrapper_vert">
+			<div class="swiper-slide forecast-slide_vert" *ngFor="let item of futureForecastServices.arrIndex; let i=index">
+				<app-short-forecast
+					[forecast]="(futureForecastServices.arrForecastDay$ | async)[i+1]"
+					[numberForecast]="[i+1]"
+					(onClickHourlyForecast)="routerServices.goToHourlyForecast($event)"
+				>
+				</app-short-forecast>	
+			</div>
+		</div>
+		<div class="swiper-button-next button-next"></div>
+		<div class="swiper-button-prev button-prev"></div>
+	</swiper>
+</div>
+<div class="wrapper swiper_hor">
+    <swiper
+	class="swiper-container"
+	[config]="config_hor">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide forecast-slide_hor" *ngFor="let item of futureForecastServices.arrIndex; let i=index">
+				<app-short-forecast
+					[forecast]="(futureForecastServices.arrForecastDay$ | async)[i+1]"
+					[numberForecast]="[i+1]"
+					(onClickHourlyForecast)="routerServices.goToHourlyForecast($event)"
+				>
+				</app-short-forecast>	
+			</div>
+		</div>
+		<div class="swiper-button-next"></div>
+		<div class="swiper-button-prev"></div>
+	</swiper>
+</div>

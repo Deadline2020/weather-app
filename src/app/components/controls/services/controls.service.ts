@@ -4,17 +4,17 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
 
 import { IAppState } from 'src/app/store/state/app.state';
-import { selectLanguage } from 'src/app/store/selectors/language.selector';
-import { DictService } from 'src/app/services/translate-data.service';
-import { getCityCoords } from 'src/app/store/actions/get-coords.actions';
-import { ErrorMsgService } from 'src/app/services/error-msg.service';
-import { selectIsLoaded } from 'src/app/store/selectors/is-loaded.selector';
-import { loadDataStart } from 'src/app/store/actions/isLoad.actions';
-import { selectTempUnit } from 'src/app/store/selectors/temperature-unit.selector';
-import { setTemperatureUnit } from 'src/app/store/actions/temperature-unit.actions';
-import { getAllInfo } from 'src/app/store/actions/get-all-info.actions';
-import { selectCoords } from 'src/app/store/selectors/coords.selector';
 import { ICoords } from 'src/app/models/coords';
+import { getAllInfo } from 'src/app/store/actions/get-all-info.actions';
+import { setTemperatureUnit } from 'src/app/store/actions/temperature-unit.actions';
+import { getCityCoords } from 'src/app/store/actions/get-coords.actions';
+import { loadDataStart } from 'src/app/store/actions/isLoad.actions';
+import { selectLanguage } from 'src/app/store/selectors/language.selector';
+import { selectIsLoaded } from 'src/app/store/selectors/is-loaded.selector';
+import { selectTempUnit } from 'src/app/store/selectors/temperature-unit.selector';
+import { selectCoords } from 'src/app/store/selectors/coords.selector';
+import { DictService } from 'src/app/services/translate-data.service';
+import { ErrorMsgService } from 'src/app/services/error-msg.service';
 import { SpeechRecognitionService } from './speech-recognition.service';
 import { SpeechSynthesisService } from './speech-synthesis.service';
 import { VoiceService } from './voice.service';
@@ -54,7 +54,6 @@ export class ControlsService implements OnDestroy {
 			this.coords = coords;
 		});
 	}
-
 
 	public searchCity = (nameCity: string): void => {
 		if (nameCity.length < 2) {

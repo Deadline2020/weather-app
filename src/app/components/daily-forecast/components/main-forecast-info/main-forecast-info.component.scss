@@ -13,17 +13,13 @@
         grid-area: temp;
     }
     &__icon {
-        // width: 80%;
         grid-area: sign;
     }
     &__params {
-        // align-self: flex-start;
         grid-area: params;
-        // justify-self: left;
     }
     &__text {
         padding: 15px 0 0 0;
         font-size: 0.8rem;
-        // text-transform: capitalize;
     }
 }

@@ -5,12 +5,12 @@ import { takeUntil } from 'rxjs/operators';
 
 import { IAppState } from '../store/state/app.state';
 import { getCurrentCoords } from '../store/actions/get-coords.actions';
+import { setTemperatureUnit } from '../store/actions/temperature-unit.actions';
+import { setCurrentLanguage } from '../store/actions/language.actions';
 import { selectIsInit } from '../store/selectors/is-init.selector';
 import { selectBgImage } from '../store/selectors/bg-image.selector';
 import { selectLanguage } from '../store/selectors/language.selector';
 import { selectTempUnit } from '../store/selectors/temperature-unit.selector';
-import { setTemperatureUnit } from '../store/actions/temperature-unit.actions';
-import { setCurrentLanguage } from '../store/actions/language.actions';
 
 @Injectable()
 export class AppService implements OnDestroy {
