@@ -9,23 +9,21 @@ import { getAllInfo } from 'src/app/store/actions/get-all-info.actions';
 import { setTemperatureUnit } from 'src/app/store/actions/temperature-unit.actions';
 import { getCityCoords } from 'src/app/store/actions/get-coords.actions';
 import { loadDataStart } from 'src/app/store/actions/isLoad.actions';
-import { selectLanguage } from 'src/app/store/selectors/language.selector';
 import { selectIsLoaded } from 'src/app/store/selectors/is-loaded.selector';
 import { selectTempUnit } from 'src/app/store/selectors/temperature-unit.selector';
 import { selectCoords } from 'src/app/store/selectors/coords.selector';
-import { DictService } from 'src/app/services/translate-data.service';
 import { ErrorMsgService } from 'src/app/services/error-msg.service';
 import { SpeechRecognitionService } from './speech-recognition.service';
 import { SpeechSynthesisService } from './speech-synthesis.service';
 import { VoiceService } from './voice.service';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Injectable()
 export class ControlsService implements OnDestroy {
 
 	private destroySubject$: Subject<boolean> = new Subject();
-	private currentLang$: Observable<string> = this._store.pipe(select(selectLanguage, takeUntil(this.destroySubject$)));
 	public isRecordOn: boolean = false;
-	public _currentLang: string;
+	public currentLang: string = this.translator.getActiveLang();
 	public isLoaded$: Observable<boolean> = this._store.pipe(select(selectIsLoaded, takeUntil(this.destroySubject$)));
 	public tempUnit$: Observable<string> = this._store.pipe(select(selectTempUnit, takeUntil(this.destroySubject$)));
 	public coords$: Observable<ICoords> = this._store.pipe(select(selectCoords, takeUntil(this.destroySubject$)));
@@ -36,17 +34,12 @@ export class ControlsService implements OnDestroy {
 
 	constructor(
 		private _store: Store<IAppState>,
-		private _dict: DictService,
 		private _errorMsg: ErrorMsgService,
 		private _recognition: SpeechRecognitionService,
 		private _speaker: SpeechSynthesisService,
 		private _voiceMsgService: VoiceService,
+		private translator: TranslocoService,
 	) {
-		this.currentLang$.subscribe((lang: string) => {
-			this._currentLang = lang;
-			this.searchBtn = this._dict.searchBtn[lang];
-			this.searchPlaceholder = this._dict.searchPlaceholder[lang];
-		});
 		this.isLoaded$.subscribe((flag: boolean) => {
 			if (flag) { this.inputSearchValue = ''; }
 		});
@@ -57,7 +50,7 @@ export class ControlsService implements OnDestroy {
 
 	public searchCity = (nameCity: string): void => {
 		if (nameCity.length < 2) {
-			this._errorMsg.onErrorMessage(this._dict.errorNameCity[this._currentLang]);
+			this._errorMsg.onErrorMessage(this.translator.translate('errorNameCity'));
 			return;
 		}
 		this.inputSearchValue = nameCity;
@@ -70,12 +63,16 @@ export class ControlsService implements OnDestroy {
 	}
 
 	public changeLang = (lang: string): void => {
-		this._store.dispatch(getAllInfo({
-			latitude: this.coords.latitude,
-			longitude: this.coords.longitude,
-			withBgImg: false,
-			language: lang,
-		}));
+		this.translator.load(lang).pipe(takeUntil(this.destroySubject$)).subscribe(() => {
+			this.currentLang = lang;
+			this.translator.setActiveLang(this.currentLang);
+			this._store.dispatch(getAllInfo({
+				latitude: this.coords.latitude,
+				longitude: this.coords.longitude,
+				withBgImg: false,
+				language: lang,
+			}));
+		});
 	};
 
 	public recordStart = (): void => {

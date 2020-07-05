@@ -5,9 +5,8 @@
 		<div class="swiper-wrapper swiper-wrapper_vert">
 			<div class="swiper-slide forecast-slide_vert" *ngFor="let item of futureForecastServices.arrIndex; let i=index">
 				<app-short-forecast
-					[forecast]="(futureForecastServices.arrForecastDay$ | async)[i+1]"
-					[numberForecast]="[i+1]"
-					(onClickHourlyForecast)="routerServices.goToHourlyForecast($event)"
+					[forecast]="(futureForecastServices.arrForecastWeek)[i+1]"
+					(onClickHourlyForecast)="routerServices.goToHourlyForecast(i+1)"
 				>
 				</app-short-forecast>	
 			</div>
@@ -23,9 +22,8 @@
 		<div class="swiper-wrapper">
 			<div class="swiper-slide forecast-slide_hor" *ngFor="let item of futureForecastServices.arrIndex; let i=index">
 				<app-short-forecast
-					[forecast]="(futureForecastServices.arrForecastDay$ | async)[i+1]"
-					[numberForecast]="[i+1]"
-					(onClickHourlyForecast)="routerServices.goToHourlyForecast($event)"
+					[forecast]="(futureForecastServices.arrForecastWeek)[i+1]"
+					(onClickHourlyForecast)="routerServices.goToHourlyForecast(i+1)"
 				>
 				</app-short-forecast>	
 			</div>

@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { IForecastDay } from 'src/app/models/forecast-day';
+import { IForecastShort } from 'src/app/models/forecast-short';
 
 @Component({
 	selector: 'app-short-forecast',
@@ -8,11 +8,10 @@ import { IForecastDay } from 'src/app/models/forecast-day';
 })
 export class ShortForecastComponent {
 
-	@Input() public forecast: IForecastDay;
-	@Input() public numberForecast: number;
-	@Output() public onClickHourlyForecast: EventEmitter<number> = new EventEmitter();
+	@Input() public forecast: IForecastShort;
+	@Output() public onClickHourlyForecast: EventEmitter<void> = new EventEmitter();
 
 	public onClick = (): void => {
-		this.onClickHourlyForecast.emit(this.numberForecast);
+		this.onClickHourlyForecast.emit();
 	}
 }

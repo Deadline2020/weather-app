@@ -10,14 +10,14 @@
     >
         <div class="wrapper header">
             <p class="list__title">
-                {{(futureForecastService.arrForecastDay$ | async)[currentID].dayAsString}}
-                - {{(futureForecastService.arrForecastDay$ | async)[currentID].date | date:"dd.MM.yyyy"}}
+                {{(futureForecastService.arrForecastWeek)[currentID].dayAsString}}
+                - {{(futureForecastService.arrForecastWeek)[currentID].date | date:"dd.MM.yyyy"}}
             </p>
             <button
                 class="btn list__btn"
                 (click)="routerService.goToMainPage()"
             >
-                {{_dict.toMainPage[(futureForecastService.currentLang$ | async)]}}
+                {{'toMainPage' | transloco}}
             </button>
         </div>
         <div

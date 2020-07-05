@@ -4,7 +4,7 @@
         type="text"
         [(ngModel)]="inputSearchValue"
         (keyup.enter)="onClickSearch()"
-        placeholder={{searchPlaceholder}}
+        [placeholder]="'searchPlaceholder' | transloco" 
     >
 	<button
         class="btn-mic"
@@ -22,7 +22,7 @@
         [class.controls-search__btn-search_load]="!isLoaded"
         (click)="onClickSearch()"
     >
-		{{searchBtn}}
+        {{ 'searchBtn' | transloco }}
     </button>
 </div>
 

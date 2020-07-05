@@ -7,7 +7,6 @@ import { getHourlyForecast } from 'src/app/store/actions/forecast.actions';
 import { FutureForecastService } from 'src/app/services/future-forecast.service';
 import { AppService } from 'src/app/services/app.service';
 import { RouterService } from 'src/app/services/router.service';
-import { DictService } from 'src/app/services/translate-data.service';
 
 @Component({
 	selector: 'app-page-hourly-forecast',
@@ -22,7 +21,6 @@ export class PageHourlyForecastComponent implements OnInit {
 		public futureForecastService: FutureForecastService,
 		public routerService: RouterService,
 		private _store: Store<IAppState>,
-		public _dict: DictService,
 		private _activatedRoute: ActivatedRoute,
 	) {
 		if (this.futureForecastService.isNewRequest) {

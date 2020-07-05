@@ -10,7 +10,7 @@ export enum EForecastActions {
 	GetHourlyForecastSuccess = '[Forecast] Get Hourly Forecast Success',
 }
 
-export interface IForecastDayActions extends Action {
+export interface IForecastShortActions extends Action {
 	type: string;
 	payload: IForecast;
 }
@@ -25,7 +25,7 @@ export interface IForecastHourActions extends Action {
 	payload: IForecastHour[][];
 }
 
-export function getDayForecastSuccess(payload: IForecast): IForecastDayActions {
+export function getDayForecastSuccess(payload: IForecast): IForecastShortActions {
 	return {
 		type: EForecastActions.GetDayForecastSuccess,
 		payload,

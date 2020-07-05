@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+import { TranslocoRootModule } from 'src/app/transloco-root.module';
 import { ControlsComponent } from './controls.component';
 import { SearchComponent } from './components/search/search.component';
 import { LangDropListComponent } from './components/lang-drop-list/lang-drop-list.component';
@@ -23,6 +24,7 @@ import { VoiceService } from './services/voice.service';
 	imports: [
 		CommonModule,
 		FormsModule,
+		TranslocoRootModule,
 	],
 	providers: [
 		ControlsService,

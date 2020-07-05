@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { IForecast } from '../models/forecast';
 import { IForecastJson } from '../models/forecast-json';
-import { IForecastDayJson } from '../models/forecast-day-json';
+import { IForecastShortJson } from '../models/forecast-short-json';
 import { ICoords } from '../models/coords';
 import { IForecastHourJson } from '../models/forecast-hour-json';
 import { IForecastHour } from '../models/forecast-hour';
@@ -14,16 +14,16 @@ import { HelpersService } from './helpers.service';
 @Injectable()
 export class GetInfoForecastService {
 	private _KEY: string = '5043e44170f7e8e95d5f736f5f1fb149';
-	private _PROXY: string = 'https://cors-anywhere.herokuapp.com/';
+	private _PROXY: string = 'https://api.allorigins.win/raw?url=';
 
 	constructor(
 		private _httpClient: HttpClient,
 		private _helpersServices: HelpersService,
 	) { }
 
-	private getWeeklyForecastData = (data: IForecastJson): IForecastDayJson[] => {
-		const result: IForecastDayJson[] = [];
-		data.daily.data.forEach((forecastOnDay: IForecastDayJson) => {
+	private getWeeklyForecastData = (data: IForecastJson): IForecastShortJson[] => {
+		const result: IForecastShortJson[] = [];
+		data.daily.data.forEach((forecastOnDay: IForecastShortJson) => {
 			result.push({
 				summary: forecastOnDay.summary,
 				icon: forecastOnDay.icon,
@@ -49,10 +49,11 @@ export class GetInfoForecastService {
 	}
 
 	public getForecastData = (lat: number, long: number, lang: string): Observable<IForecast> => {
-		const queryUrl: string = `${this._PROXY}https://api.darksky.net/forecast/${this._KEY}/${lat},${long}?exclude=hourly,flags&units=si&lang=${lang}`;
+		const url: string = encodeURIComponent(`https://api.darksky.net/forecast/${this._KEY}/${lat},${long}?exclude=hourly,flags&units=si&lang=${lang}`);
+		const queryUrl: string = `${this._PROXY}${url}`;
 		return this._httpClient.get(queryUrl).pipe(
 			map((data: IForecastJson) => {
-				const weeklyForecastData: IForecastDayJson[] = this.getWeeklyForecastData(data);
+				const weeklyForecastData: IForecastShortJson[] = this.getWeeklyForecastData(data);
 				return {
 					curShortlyForecast: data.daily.data[0].summary,
 					curSummary: data.currently.summary,
@@ -69,7 +70,8 @@ export class GetInfoForecastService {
 	}
 
 	public getHourlyForecast = ({ latitude, longitude }: ICoords): Observable<IForecastHour[][]> => {
-		const queryUrl: string = `${this._PROXY}https://api.darksky.net/forecast/${this._KEY}/${latitude},${longitude}?exclude=currently,daily,flags&extend=hourly&units=si&lang=en`;
+		const url: string = encodeURIComponent(`https://api.darksky.net/forecast/${this._KEY}/${latitude},${longitude}?exclude=currently,daily,flags&extend=hourly&units=si&lang=en`);
+		const queryUrl: string = `${this._PROXY}${url}`;
 		return this._httpClient.get(queryUrl).pipe(
 			map((data: IForecastHourJson) => {
 				const SEC_IN_HOUR: number = 3600;

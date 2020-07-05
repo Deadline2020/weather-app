@@ -11,12 +11,12 @@
         {{ summary }}
     </p>
     <p class="info__text">
-        {{ feelsLike }}
+        {{ 'apparentTemperature' | transloco }}{{ feelsLike }}
     </p>
     <p class="info__text">
-        {{ wind }}
+        {{ 'wind' | transloco }}{{ wind }}{{ 'speed' | transloco }}
 	</p>
 	<p class="info__text">
-        {{ humidity }}
+        {{ 'humidity' | transloco }}{{ humidity | percent}}
     </p>
 </div>

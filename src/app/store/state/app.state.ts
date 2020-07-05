@@ -1,6 +1,5 @@
 import { IIsLoadedState, initialIsLoadedState } from './is-loaded.state';
 import { IUrlBgImgState, initialUrlBgImgState } from './bg-image.state';
-import { ILanguageState, initialLanguageState } from './language.state';
 import { ITemperatureUnitState, initialTemperatureUnitState } from './temperature-unit.state';
 import { ICoordsState, initialCoordsState } from './coords.state';
 import { IInfoLocationState, initialInfoLocationState } from './info-location.state';
@@ -14,7 +13,6 @@ export interface IAppState {
 	isLoaded: IIsLoadedState;
 	isNewRequest: IIsNewRequestState;
 	urlBgImg: IUrlBgImgState;
-	language: ILanguageState;
 	temperatureUnit: ITemperatureUnitState;
 	coords: ICoordsState;
 	infoLocation: IInfoLocationState;
@@ -27,7 +25,6 @@ export const initialAppState: IAppState = {
 	isLoaded: initialIsLoadedState,
 	isNewRequest: initialIsNewRequestState,
 	urlBgImg: initialUrlBgImgState,
-	language: initialLanguageState,
 	temperatureUnit: initialTemperatureUnitState,
 	coords: initialCoordsState,
 	infoLocation: initialInfoLocationState,

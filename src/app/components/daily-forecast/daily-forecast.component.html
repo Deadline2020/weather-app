@@ -10,11 +10,11 @@
     </div>
     <div class="wrapper daily-forecast__info">
         <app-main-forecast-info
-            [currentTemp]="(dailyForecastService.temperature$ | async).curTemperature"
+            [currentTemp]="(dailyForecastService.forecastParams$ | async).curTemperature"
             [iconPath]="(dailyForecastService.forecastParams$ | async).curIcon"
             [summary]="(dailyForecastService.forecastParams$ | async).curSummary"
-            [feelsLike]="(dailyForecastService.temperature$ | async).apparentTemperature"
-            [wind]="(dailyForecastService.forecastParams$ | async).curWind"
+            [feelsLike]="(dailyForecastService.forecastParams$ | async).curApparentTemperature"
+            [wind]="(dailyForecastService.forecastParams$ | async).curWindSpeed"
             [humidity]="(dailyForecastService.forecastParams$ | async).curHumidity"
         >
         </app-main-forecast-info>

@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { TranslocoRootModule } from './transloco-root.module';
 
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +24,6 @@ import { GetCoordsService } from './services/get-coords.service';
 import { GetInfoLocationService } from './services/get-info-location.service';
 import { GetAllInfoService } from './services/get-all-info.service';
 import { GetInfoForecastService } from './services/get-info-forecast.service';
-import { DictService } from './services/translate-data.service';
 import { ErrorMsgService } from './services/error-msg.service';
 import { FutureForecastService } from './services/future-forecast.service';
 import { RouterService } from './services/router.service';
@@ -52,6 +52,7 @@ import { GetAllInfoEffects } from './store/effects/get-all-info.effects';
 		StoreModule.forRoot(appReducers),
 		EffectsModule.forRoot([GetAllInfoEffects, GetCurCoordsEffects, GetCityCoordsEffects, GetHourlyForecastEffects]),
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+		TranslocoRootModule,
 	],
 	providers: [
 		GetAllInfoService,
@@ -61,7 +62,6 @@ import { GetAllInfoEffects } from './store/effects/get-all-info.effects';
 		HelpersService,
 		ErrorMsgService,
 		GetCoordsService,
-		DictService,
 		FutureForecastService,
 		RouterService,
 		AppService,

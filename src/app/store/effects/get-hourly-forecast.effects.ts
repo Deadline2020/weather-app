@@ -12,7 +12,7 @@ import { setRequestSuccess, IIsNewRequestActions } from '../actions/is-new-reque
 export class GetHourlyForecastEffects {
 
 	@Effect()
-	public getHourlyForecast$: Observable<IIsNewRequestActions>= this._actions$.pipe(
+	public getHourlyForecast$: Observable<IIsNewRequestActions> = this._actions$.pipe(
 		ofType<IForecastHourRequestActions>(EForecastActions.GetHourlyForecast),
 		switchMap((data: IForecastHourRequestActions) => this._getInfoForecastService.getHourlyForecast(data.payload)),
 		switchMap((data: IForecastHour[][]) => [
